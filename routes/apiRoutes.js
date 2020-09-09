@@ -21,6 +21,16 @@ router.get("/getjob/:jobAssignedTo", (req, res) => {
         .catch(err => res.status(500).json(err));
 })
 
+router.get("/getselected", (req, res) => {
+    db.Booking.findOne(params)
+        .then(data => {
+            console.log("getselected");
+            res.json(data)
+        })
+        .catch(err => res.json(err));
+})
+
+
 router.put("/updatejob/:id", (req, res) => {
     db.Booking.findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(data => res.json(data))

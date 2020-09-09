@@ -2,7 +2,6 @@ export function findBlockDates(jobs) {
     // *** find holidays this year and next year
     // import dependencies
     const Holidays = require('date-holidays');
-    // const parseISO = require('date-fns/parseISO')
 
     // holidays
     const hd = new Holidays('US', 'CO');
@@ -52,7 +51,6 @@ export function findBlockDates(jobs) {
         blockDates[i] = new Date(blockDates[i]);
     }
 
-    console.log("parse", blockDates);
 
     return blockDates;
 
