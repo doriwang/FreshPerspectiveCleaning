@@ -4,11 +4,9 @@ import axios from "axios"
 import M from "materialize-css"
 import { calculatePrice } from "../utils/calculatePrice"
 import { findBlockDates } from "../utils/findBlockDates"
-
 class Booking extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             // simon start
             // calendar state, simon codes here
@@ -16,9 +14,7 @@ class Booking extends Component {
             selectedDate: "",
             startDate: new Date(),
             blockedDate: [],
-            
             // simon end
-
             // dori codes here
             // form states 
             showEstimate: false,
@@ -40,7 +36,6 @@ class Booking extends Component {
             estimate: 0.00
         }
     }
-
     // simon start calendar method
     handleDateInputClick = () => {
         this.setState({ showCalendar: true })
@@ -56,7 +51,6 @@ class Booking extends Component {
         const day = date.getDay();
         return day !== 0 && day !== 6;
     };
-
     getJobs = () => {
         axios.get("/api/getjobs")
             .then(res => {
@@ -68,26 +62,20 @@ class Booking extends Component {
                 })
             }).catch(err => console.log(err))
     }
-
     // simon end
-
     // dori starts form methods
     handleFormInputChange = event => {
         let value = event.target.value
         const name = event.target.name
-
         this.setState({
             [name]: value,
         })
     }
-
     getEstimate = () => {
         this.setState({
             estimate: calculatePrice(this.state.bathNum, this.state.frequency).toFixed(2)
         })
-
     }
-
     frequencyChange = (event) => {
         let value = event.target.value
         this.setState({
@@ -97,7 +85,6 @@ class Booking extends Component {
             estimate: calculatePrice(this.state.bathNum, value)
         })
     }
-
     handleFormSubmit = (event) => {
         event.preventDefault()
         // collecting form data
@@ -116,7 +103,6 @@ class Booking extends Component {
             city,
             zipCode,
             notes, estimate } = this.state
-
         const formData = {
             selectedDate,
             bedNum,
@@ -135,7 +121,6 @@ class Booking extends Component {
             notes,
             estimate
         }
-
         axios.post("/api/booknow", formData)
             .then(res => {
                 console.log(res)
@@ -159,7 +144,6 @@ class Booking extends Component {
                 })
             }).catch(err => console.log(err))
     }
-
     // get route 
     // pullJobs = () => {
     //     axios.get("/api/getjobs")
@@ -167,12 +151,10 @@ class Booking extends Component {
     //             console.log(res)
     //         })
     // }
-
     componentDidMount() {
         M.AutoInit();
         this.getJobs();
     }
-
     render() {
         return (
             <div className="container app-content">
@@ -208,7 +190,7 @@ class Booking extends Component {
                         preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                         estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
                     />
-                <BookingForm
+                {/* <BookingForm
                     // calendar simon codes
                     date={ this.state.selectedDate.toString().slice(0, 15) }
                     calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
@@ -239,7 +221,7 @@ class Booking extends Component {
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                />
+                /> */}
             </div>
         )
     }

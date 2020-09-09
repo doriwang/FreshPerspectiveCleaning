@@ -2,7 +2,6 @@ import React from "react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { Col, Icon } from "react-materialize"
-
 // datepicker localization
 import { registerLocale } from "react-datepicker"
 import us from "date-fns/locale/en-US"
@@ -15,7 +14,6 @@ class BookingForm extends React.Component {
         morningDisabled: false,
         afternoonDisabled: false,
     }
-    
     handleDateInputChange = () => {
         Axios.get("/api/getselected", {params: {selectedDate: this.props.selectedDate}})
         .then(res => {
@@ -32,7 +30,6 @@ class BookingForm extends React.Component {
             }
         })
         .catch(err => console.log(err))
-
         console.log("Date changed")
     }
 
@@ -198,7 +195,4 @@ class BookingForm extends React.Component {
     }
 
 }
-
-    
-
 export default BookingForm
