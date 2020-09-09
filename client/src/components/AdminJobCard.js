@@ -8,7 +8,7 @@ export const AdminJobCard = ({ job }) => {
 
     const [jobDetails, setJobDetails] = useState(
         {
-            selectedDate: job.selectedDate,
+            selectedDate: new Intl.DateTimeFormat('en-US').format(new Date(job.selectedDate.toString().slice(0, 15))),
             bedNum: job.bedNum,
             bathNum: job.bathNum,
             footageNum: job.footageNum,
@@ -86,7 +86,7 @@ export const AdminJobCard = ({ job }) => {
                         />
                     </form>
                 </div>
-                <p>Date: { new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.split("T")[0])) } { arrivalTime } </p>
+                <p>Date: { selectedDate } { arrivalTime } </p>
                 <p>Client Name: { firstName } { lastName }</p>
                 <p>Client Contact: { phone } | { email }</p>
                 <p>House Summary: { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
@@ -105,7 +105,7 @@ export const AdminJobCard = ({ job }) => {
                     <TextInput l={ 3 } s={ 12 } label="Phone" defaultValue={ phone } name="phone" onChange={ e => setJobDetails({ ...jobDetails, phone: e.target.value }) } />
                     <TextInput l={ 3 } s={ 12 } label="Email" defaultValue={ email } name="email" onChange={ e => setJobDetails({ ...jobDetails, email: e.target.value }, console.log(e.target.value)) } />
                     <h5>Job Summary:</h5>
-                    <TextInput l={ 2 } s={ 12 } label="Date" defaultValue={ new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.split("T")[0])) } name="selectedDate" onChange={ e => setJobDetails({ ...jobDetails, selectedDate: e.target.value }) } />
+                    <TextInput l={ 2 } s={ 12 } label="Date" defaultValue={ selectedDate } name="selectedDate" onChange={ e => setJobDetails({ ...jobDetails, selectedDate: e.target.value }) } />
                     <TextInput l={ 4 } s={ 12 } label="Arrival Time" defaultValue={ arrivalTime } name="arrivalTime" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />
                     <TextInput className="input-field" l={ 4 } s={ 12 } label="Job Assigned To" defaultValue={ jobAssignedTo } name="jobAssignedTo" onChange={ e => setJobDetails({ ...jobDetails, jobAssignedTo: e.target.value }) } />
                     <TextInput l={ 2 } s={ 12 } label="Estimate" defaultValue={ `${estimate}` } name="estimate" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />
@@ -117,7 +117,7 @@ export const AdminJobCard = ({ job }) => {
                     <TextInput l={ 3 } s={ 12 } label="Address 2" defaultValue={ address2 } name="address2" onChange={ e => setJobDetails({ ...jobDetails, address2: e.target.value }) } />
                     <TextInput l={ 3 } s={ 12 } label="City" defaultValue={ city } name="city" onChange={ e => setJobDetails({ ...jobDetails, city: e.target.value }) } />
                     <TextInput l={ 3 } s={ 12 } label="Zip Code" defaultValue={ zipCode } name="zipCode" onChange={ e => setJobDetails({ ...jobDetails, zipCode: e.target.value }) } />
-                    <Textarea l={ 12 } name="notes" className="materialize-textarea" label="Special Request/Instruction" defaultValue={ notes } name="notes" onChange={ e => setJobDetails({ ...jobDetails, notes: e.target.value }) } />
+                    <Textarea l={ 12 } name="notes" className="materialize-textarea" label="Special Request/Instruction" defaultValue={ notes } onChange={ e => setJobDetails({ ...jobDetails, notes: e.target.value }) } />
                     <Button
                         icon={ <Icon>update</Icon> }
                         medium="true"

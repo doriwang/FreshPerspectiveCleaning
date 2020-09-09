@@ -33,7 +33,7 @@ class Booking extends Component {
             city: "",
             zipCode: "",
             notes: "",
-            estimate: 0.00
+            estimate: 0.00.toFixed(2)
         }
     }
     // simon start calendar method
@@ -43,7 +43,7 @@ class Booking extends Component {
     handleDateChange = date => {
         this.setState({
             startDate: date,
-            selectedDate: date.toString().slice(0,15),
+            selectedDate: date.toString().slice(0, 15),
             showCalendar: false,
         });
     };
@@ -123,7 +123,6 @@ class Booking extends Component {
         }
         axios.post("/api/booknow", formData)
             .then(res => {
-                console.log(res)
                 this.setState({
                     selectedDate: "",
                     bedNum: "",
@@ -140,17 +139,11 @@ class Booking extends Component {
                     city: "",
                     zipCode: "",
                     notes: "",
-                    estimate: 0.00
+                    estimate: 0.00.toFixed(2)
                 })
             }).catch(err => console.log(err))
     }
-    // get route 
-    // pullJobs = () => {
-    //     axios.get("/api/getjobs")
-    //         .then(res => {
-    //             console.log(res)
-    //         })
-    // }
+
     componentDidMount() {
         M.AutoInit();
         this.getJobs();
@@ -158,41 +151,9 @@ class Booking extends Component {
     render() {
         return (
             <div className="container app-content">
-                    <BookingForm
-                        // calendar simon codes
-                        selectedDate={ this.state.selectedDate }
-                        calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
-                        isWeekday={ this.isWeekday }
-                        excludeDates={ this.state.blockedDate }
-                        selected={ this.state.startDate }
-                        handleDateInputClick={ this.handleDateInputClick }
-                        handleDateChange={ date => this.handleDateChange(date) }
-                        // form dori codes here
-                        handleFormInputChange={ this.handleFormInputChange }
-                        handleFormSubmit={ this.handleFormSubmit }
-                        bedNum={ this.state.bedNum }
-                        bathNum={ this.state.bathNum }
-                        footageNum={ this.state.footageNum }
-                        frequency={ this.state.frequency }
-                        arrivalTime={ this.state.arrivalTime }
-                        firstName={ this.state.firstName }
-                        lastName={ this.state.lastName }
-                        phone={ this.state.phone }
-                        email={ this.state.email }
-                        address1={ this.state.address1 }
-                        address2={ this.state.address2 }
-                        city={ this.state.city }
-                        zipCode={ this.state.zipCode }
-                        notes={ this.state.notes }
-                        estimate={ this.state.estimate }
-                        getEstimate={ this.getEstimate }
-                        frequencyChange={ this.frequencyChange }
-                        preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
-                        estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                    />
-                {/* <BookingForm
+                <BookingForm
                     // calendar simon codes
-                    date={ this.state.selectedDate.toString().slice(0, 15) }
+                    selectedDate={ this.state.selectedDate }
                     calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
                     isWeekday={ this.isWeekday }
                     excludeDates={ this.state.blockedDate }
@@ -216,12 +177,12 @@ class Booking extends Component {
                     city={ this.state.city }
                     zipCode={ this.state.zipCode }
                     notes={ this.state.notes }
-                    estimate={ this.state.estimate.toFixed(2) }
+                    estimate={ this.state.estimate }
                     getEstimate={ this.getEstimate }
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                /> */}
+                />
             </div>
         )
     }

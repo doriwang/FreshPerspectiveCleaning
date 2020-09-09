@@ -4,7 +4,9 @@
   min-height: 100vh;
   position: relative
 }
-
+.btn {
+  background-color: gold ! important;
+}
 /* booking page */
 .bookingForm h5{
   color: 	#006400;
@@ -74,5 +76,5 @@
 .btn-login {
   margin-bottom: 20px;
   width: 100%;
-  background-color: #2db92d !important
+  background-color: gold !important
 }
