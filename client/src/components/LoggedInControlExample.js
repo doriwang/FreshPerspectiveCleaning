@@ -6,39 +6,39 @@ const BACKEND_HOST = Config.BACKEND_HOST;
 
 class LoggedInControlExample extends React.Component {
 	state = {
-		testData:"",
+		testData: "",
 	}
-	
+
 	captureInput = (event) => {
 		const payload = {}
 		payload[event.target.id] = event.target.value;
 		this.setState(payload);
 	}
-	
+
 	onSubmit = async (event) => {
 		event.preventDefault();
 		const { testData } = this.state;
-		
-		const result = await axios.post(BACKEND_HOST+"/example", { testData, token: localStorage.userLogin });
-		
+
+		const result = await axios.post(BACKEND_HOST + "/example", { testData, token: localStorage.userLogin });
+
 		const { success, message } = result.data;
-		
+
 		if (success) {
-			M.toast({ html: `Success! Echo: ${testData}`, classes: "green"});
+			M.toast({ html: `Success! Echo: ${testData}`, classes: "green" });
 		} else {
-			M.toast({ html: `Failure! Reason: ${message}`, classes: "red"});
+			M.toast({ html: `Failure! Reason: ${message}`, classes: "red" });
 		}
-		
+
 	}
-	
+
 	render() {
 		return <div className="col s6 row">
 			<h4>Logged In Control Example:</h4>
 			<div className="input-field col s12">
-				<input id="testData" onChange={this.captureInput} type="text" />
+				<input id="testData" onChange={ this.captureInput } type="text" />
 				<label for="testData">Test Data</label>
 			</div>
-			<a href="" className="btn" onClick={this.onSubmit}>Do Thing!</a>
+			<a href=" " className="btn" onClick={ this.onSubmit }>Do Thing!</a>
 		</div>
 	}
 }

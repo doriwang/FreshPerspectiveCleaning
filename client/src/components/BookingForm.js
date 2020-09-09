@@ -2,21 +2,16 @@ import React from "react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { Col, Icon } from "react-materialize"
-
 // datepicker localization
 import { registerLocale } from "react-datepicker"
 import us from "date-fns/locale/en-US"
 import Axios from "axios";
-registerLocale("us", us)
-
-
+registerLocale("us", us);
 class BookingForm extends React.Component {
     state = {
         morningDisabled: false,
         afternoonDisabled: false,
-        date: ""
     }
-    
     handleDateInputChange = () => {
         Axios.get("/api/getselected", {params: {selectedDate: this.props.selectedDate}})
         .then(res => {
@@ -33,29 +28,8 @@ class BookingForm extends React.Component {
             }
         })
         .catch(err => console.log(err))
-
         console.log("Date changed")
     }
-    checkSection = () => {
-        console.log("checked");
-        Axios.get("/api/getselected", {params: {selectedDate: this.props.selectedDate}})
-            .then(res => {
-                console.log("selected", res.data);
-                if(res.data.arrivalTime === "Morning Arrival between 8AM - 9AM") {
-                    this.setState({
-                        morningDisabled: true
-                    })
-                }
-                if(res.data.arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
-                    this.setState({
-                        afternoonDisabled: true
-                    })
-                }
-            })
-            .catch(err => console.log(err))
-    }
-
-
     render() {
         return (
             <form onSubmit={ this.props.handleFormSubmit }>
@@ -207,7 +181,7 @@ class BookingForm extends React.Component {
                     <div className="container" style={ this.props.preEstimateStyle }>
                         <h6>Your estimate will display below after you enter your property info.</h6>
                     </div>
-                    <h5 id="total">TOTAL: <span id="price">$ { this.props.estimate.toFixed(2) }</span></h5>
+                    <h5 id="total">TOTAL: <span id="price">$ { this.props.estimate }</span></h5>
                 </Col>
                 <Col l={ 8 } s={ 12 }>
                     <button className="btn btn-bookNow" type="submit" name="action">BOOK NOW</button>
@@ -215,9 +189,5 @@ class BookingForm extends React.Component {
             </form>
         )
     }
-
 }
-
-    
-
 export default BookingForm

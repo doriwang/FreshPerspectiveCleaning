@@ -1,12 +1,14 @@
 import React from "react"
-// import { Card } from "react-materialize"
-// import "../css/CheckListCards.css"
+import { Card, CardTitle } from "react-materialize"
 
 export const KitchenCard = () => {
     return (
         <div>
-            <h5>KITCHEN</h5>
-            <div className="row">
+            <Card
+                header={ <CardTitle image="https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" /> }
+                title="KITCHEN"
+                horizontal
+            >
                 <ul className="col l6 s12">
                     <li>Tidy up</li>
                     <li>Cabinets front exterior dusted/wiped down</li>
@@ -24,7 +26,7 @@ export const KitchenCard = () => {
                     <li>Blinds + baseboards alternatively dusted</li>
                     <li>Floors vacuumed/swept + mopped</li>
                 </ul>
-            </div>
+            </Card>
         </div>
     )
 }
@@ -32,8 +34,11 @@ export const KitchenCard = () => {
 export const BathCard = () => {
     return (
         <div>
-            <h5>BATHROOMS</h5>
-            <div className="row">
+            <Card
+                header={ <CardTitle image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" /> }
+                title="BATHROOM"
+                horizontal
+            >
                 <ul className="col l6 s12">
                     <li>Tidy up</li>
                     <li>Bath rugs removed + vacuumed</li>
@@ -42,10 +47,10 @@ export const BathCard = () => {
                     <li>Countertops + sidesplash wiped down</li>
                     <li>Mirrors cleaned</li>
                     <li>Personal care products, soap dish, etc. cleaned</li>
-                    <li>Sink scrubbed + disinfected, faucet shined</li>
+                    <li>Switch plates wiped down</li>
                 </ul>
                 <ul className="col l6 s12">
-                    <li>Switch plates wiped down</li>
+                    <li>Sink scrubbed + disinfected, faucet shined</li>
                     <li>Cabinets exterior wiped down</li>
                     <li>Towels folded + hung</li>
                     <li>Chrome fixtures shined</li>
@@ -55,7 +60,7 @@ export const BathCard = () => {
                     <li>Floors vacuumed + mopped</li>
                     <li>Blinds maintained if any</li>
                 </ul>
-            </div>
+            </Card>
         </div>
     )
 }
@@ -63,8 +68,11 @@ export const BathCard = () => {
 export const RoomCard = () => {
     return (
         <div>
-            <h5>BEDROOMS, OFFICES, OTHER AREAS + LAUNDRY ROOM</h5>
-            <div className="row">
+            <Card
+                header={ <CardTitle image="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" /> }
+                title="BEDROOMS, OFFICES, OTHER AREAS + LAUNDRY ROOM"
+                horizontal
+            >
                 <ul className="col l6 s12">
                     <li>Tidy up</li>
                     <li>Standing objects dusted</li>
@@ -73,16 +81,16 @@ export const RoomCard = () => {
                     <li>Mirrors cleaned</li>
                     <li>Glass door cleaned</li>
                     <li>Stair railings dusted/handrail wiped down</li>
+                    <li>Stairs vacuumed/wiped down</li>
                 </ul>
                 <ul className="col l6 s12">
-                    <li>Stairs vacuumed/wiped down</li>
                     <li>Cabinets front exterior dusted/wiped down</li>
                     <li>Washer + dryer exterior dusted/wiped down</li>
                     <li>Trash can emptied/trash bag replaced</li>
                     <li>Blinds + baseboards alternatively dusted</li>
                     <li>Floors vacuumed/swept + mopped (if applicable)</li>
                 </ul>
-            </div>
+            </Card>
         </div>
     )
 }

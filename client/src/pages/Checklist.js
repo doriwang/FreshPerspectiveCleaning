@@ -1,19 +1,20 @@
 import React from "react"
 import { KitchenCard, BathCard, RoomCard } from "../components/ChecklistCards"
+import { Row, Col } from "react-materialize"
 
 const Checklist = () => {
     return (
-        <div className="row container app-content">
-            <div className="card col l8 offset-l2 cardLists">
+        <Row className="container app-content">
+            <Col l={ 12 } s={ 12 } className="cardLists">
                 <KitchenCard />
-            </div>
-            <div className="card col l8 offset-l2 cardLists">
+            </Col>
+            <Col l={ 12 } s={ 12 } className="cardLists">
                 <BathCard />
-            </div>
-            <div className="card col l8 offset-l2 cardLists">
+            </Col>
+            <Col l={ 12 } s={ 12 } className="cardLists">
                 <RoomCard />
-            </div>
-        </div>
+            </Col>
+        </Row>
     )
 }
 

@@ -16,6 +16,7 @@ const bookingSchema = new Schema({
     address1: { type: String, required: true },
     address2: { type: String },
     city: { type: String, required: true },
+    state: { type: String, default: "CO" },
     zipCode: { type: String, required: true },
     notes: { type: String, default: "", },
     estimate: { type: Number },
