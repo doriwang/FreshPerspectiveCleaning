@@ -24,7 +24,7 @@ const EmployeeJobCard = ({ job }) => {
 
     return (
         <Col l={ 6 } s={ 12 } className="card">
-            <p>Date: { new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.split("T")[0])) } { arrivalTime } </p>
+            <p>Date: { new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.toString().slice(0, 15))) } { arrivalTime } </p>
             <p>Job Assigned To: { jobAssignedTo }</p>
             <p>Client Name: { firstName } { lastName }</p>
             <p>Client Contact: { phone } | { email }</p>

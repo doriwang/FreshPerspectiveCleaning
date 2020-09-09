@@ -15,30 +15,30 @@ class BookingForm extends React.Component {
         afternoonDisabled: false,
     }
     handleDateInputChange = () => {
-        Axios.get("/api/getselected", {params: {selectedDate: this.props.selectedDate}})
-        .then(res => {
-            console.log("selected");
-            if(res.data.arrivalTime === "Morning Arrival between 8AM - 9AM") {
-                this.setState({
-                    morningDisabled: true
-                })
-            }
-            if(res.data.arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
-                this.setState({
-                    afternoonDisabled: true
-                })
-            }
-        })
-        .catch(err => console.log(err))
+        Axios.get("/api/getselected", { params: { selectedDate: this.props.selectedDate } })
+            .then(res => {
+                console.log("selected");
+                if (res.data.arrivalTime === "Morning Arrival between 8AM - 9AM") {
+                    this.setState({
+                        morningDisabled: true
+                    })
+                }
+                if (res.data.arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
+                    this.setState({
+                        afternoonDisabled: true
+                    })
+                }
+            })
+            .catch(err => console.log(err))
         console.log("Date changed")
     }
 
 
     render() {
         return (
-            <form onSubmit={ this.props.handleFormSubmit }>
+            <form onSubmit={ this.props.handleFormSubmit } className="bookingForm row">
                 <Col className="card" l={ 8 } s={ 12 }>
-                    <h5>1. ENTER YOUR PROPERTY INFO</h5>
+                    <Col l={ 12 } s={ 12 }><h5>1. ENTER YOUR PROPERTY INFO</h5></Col>
                     <Col className="validate input-field" l={ 6 } s={ 12 }>
                         <select name="bedNum" value={ this.props.bedNum }
                             onChange={ this.props.handleFormInputChange } >
@@ -86,11 +86,11 @@ class BookingForm extends React.Component {
                         <label>How often would you like us to clean?</label>
                     </Col>
                     <h5>2. CHOOSE A SERVICE DATE</h5>
-                    <Col className="validate input-field" l={ 6 } s={ 12 }>
+                    <Col className="validate input-field" l={ 6 } s={ 12 } >
                         <input placeholder=" " name="date" type="text"
                             value={ this.props.selectedDate }
                             onClick={ this.props.handleDateInputClick }
-                            onChange={console.log("date changed")}
+                            onChange={ console.log("date changed") }
                         />
                         <label>Date</label>
                     </Col>
@@ -109,8 +109,8 @@ class BookingForm extends React.Component {
                     <Col className="validate input-field" l={ 6 } s={ 12 }>
                         <select value={ this.props.arrivalTime } name="arrivalTime" onChange={ this.props.handleFormInputChange }>
                             <option disabled value="">Choose your option</option>
-                            <option disabled={this.state.morningDisabled}>Morning Arrival between 8AM - 9AM</option>
-                            <option disabled={this.state.afternoonDisabled}>Afternoon Arrival between 12PM - 1PM</option>
+                            <option disabled={ this.state.morningDisabled }>Morning Arrival between 8AM - 9AM</option>
+                            <option disabled={ this.state.afternoonDisabled }>Afternoon Arrival between 12PM - 1PM</option>
                         </select>
                         <label>Arrival Time</label>
                     </Col>
@@ -187,7 +187,7 @@ class BookingForm extends React.Component {
                     </div>
                     <h5 id="total">TOTAL: <span id="price">$ { this.props.estimate }</span></h5>
                 </Col>
-                <Col l={ 8 } s={ 12 }>
+                <Col l={ 8 } s={ 12 } className="bookNow-div">
                     <button className="btn btn-bookNow" type="submit" name="action">BOOK NOW</button>
                 </Col>
             </form>
