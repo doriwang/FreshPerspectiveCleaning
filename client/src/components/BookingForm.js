@@ -7,6 +7,8 @@ import { registerLocale } from "react-datepicker"
 import us from "date-fns/locale/en-US"
 import Axios from "axios";
 registerLocale("us", us);
+
+
 class BookingForm extends React.Component {
     state = {
         morningDisabled: false,
@@ -30,6 +32,8 @@ class BookingForm extends React.Component {
         .catch(err => console.log(err))
         console.log("Date changed")
     }
+
+
     render() {
         return (
             <form onSubmit={ this.props.handleFormSubmit }>
@@ -189,5 +193,6 @@ class BookingForm extends React.Component {
             </form>
         )
     }
+
 }
 export default BookingForm

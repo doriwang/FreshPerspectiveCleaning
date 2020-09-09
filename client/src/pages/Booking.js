@@ -190,7 +190,7 @@ class Booking extends Component {
                         preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                         estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
                     />
-                <BookingForm
+                {/* <BookingForm
                     // calendar simon codes
                     date={ this.state.selectedDate.toString().slice(0, 15) }
                     calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
@@ -221,7 +221,7 @@ class Booking extends Component {
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                />
+                /> */}
             </div>
         )
     }

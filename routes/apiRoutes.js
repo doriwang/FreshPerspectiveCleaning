@@ -22,7 +22,7 @@ router.get("/getjob/:jobAssignedTo", (req, res) => {
 })
 
 router.get("/getselected", (req, res) => {
-    db.Booking.findOne(params)
+    db.Booking.findOne(req.params)
         .then(data => {
             console.log("getselected");
             res.json(data)
