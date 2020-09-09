@@ -22,7 +22,7 @@ class Navbar extends Component {
                             <li><NavLink to="/">Home</NavLink></li>
                             <li><NavLink to="/checklist">CleaningChecklist</NavLink></li>
                             <li><NavLink to="/booking">Booking</NavLink></li>
-                            <li><NavLink to="/login">EmployeePortal</NavLink></li>
+                            <li><NavLink to="/login">CompanyPortal</NavLink></li>
                         </ul>
                     </div>
                 </nav>
@@ -30,7 +30,7 @@ class Navbar extends Component {
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/checklist">CleaningChecklist</NavLink></li>
                     <li><NavLink to="/booking">Booking</NavLink></li>
-                    <li><NavLink to="/login">EmployeePortal</NavLink></li>
+                    <li><NavLink to="/login">CompanyPortal</NavLink></li>
                 </ul>
             </div>
         )

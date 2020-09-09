@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import BookingForm from "../components/BookingForm"
-import { Row } from "react-materialize"
 import axios from "axios"
 import M from "materialize-css"
 import { calculatePrice } from "../utils/calculatePrice"
@@ -84,7 +83,7 @@ class Booking extends Component {
 
     getEstimate = () => {
         this.setState({
-            estimate: calculatePrice(this.state.bathNum, this.state.frequency)
+            estimate: calculatePrice(this.state.bathNum, this.state.frequency).toFixed(2)
         })
 
     }
@@ -177,7 +176,6 @@ class Booking extends Component {
     render() {
         return (
             <div className="container app-content">
-                <Row>
                     <BookingForm
                         // calendar simon codes
                         selectedDate={ this.state.selectedDate }
@@ -210,7 +208,38 @@ class Booking extends Component {
                         preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                         estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
                     />
-                </Row>
+                <BookingForm
+                    // calendar simon codes
+                    date={ this.state.selectedDate.toString().slice(0, 15) }
+                    calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
+                    isWeekday={ this.isWeekday }
+                    excludeDates={ this.state.blockedDate }
+                    selected={ this.state.startDate }
+                    handleDateInputClick={ this.handleDateInputClick }
+                    handleDateChange={ date => this.handleDateChange(date) }
+                    // form dori codes here
+                    handleFormInputChange={ this.handleFormInputChange }
+                    handleFormSubmit={ this.handleFormSubmit }
+                    bedNum={ this.state.bedNum }
+                    bathNum={ this.state.bathNum }
+                    footageNum={ this.state.footageNum }
+                    frequency={ this.state.frequency }
+                    arrivalTime={ this.state.arrivalTime }
+                    firstName={ this.state.firstName }
+                    lastName={ this.state.lastName }
+                    phone={ this.state.phone }
+                    email={ this.state.email }
+                    address1={ this.state.address1 }
+                    address2={ this.state.address2 }
+                    city={ this.state.city }
+                    zipCode={ this.state.zipCode }
+                    notes={ this.state.notes }
+                    estimate={ this.state.estimate.toFixed(2) }
+                    getEstimate={ this.getEstimate }
+                    frequencyChange={ this.frequencyChange }
+                    preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
+                    estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
+                />
             </div>
         )
     }

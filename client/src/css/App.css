@@ -2,56 +2,37 @@
 .app-content {
   /* min-height: 100vh; */
   padding-top: 20px;
-  margin-bottom: 20px
+  /* margin-bottom: 20px; */
+  min-height: 100vh
 }
 
 /* booking page */
-.price-card {
-  position: sticky !important;
-  top: 0 !important;
-  margin-left: 5px;
-  width: 32%;
+.bookingForm h5{
+  color: 	#006400;
+  font-weight: bold;
 }
 
 .btn-bookNow {
   background-color: #2db92d;
-  width: 103.5%;
-  margin-bottom: 20px;
-  margin-left: -10px;
+  width: 100%;
+}
+
+.bookNow-div {
+  padding: 0px !important;
 }
 
 #form-header {
   margin-left: 11.25px
 }
 
-/* Checklist page */
-.cardLists ul li {
-  margin-left: 30px;
-  display: list-item !important;
-  list-style-type: disc !important;
-}
-
-.cardLists {
-  margin-bottom: -5px;
-  border-bottom: 2px solid lightgray
-}
-
-.cardLists h5{
-  padding: 5px;
-  margin: 0px -12px 0px -12px;
-  background: lightgray;
-  text-align: center
-}
-
-.float-right {
-  float: right
-}
-
-.float-left {
-  float: left
-}
-
 /* estimate card */
+.bookingForm .price-card {
+  position: sticky !important;
+  top: 0 !important;
+  margin-left: 5px !important;
+  width: 32% !important;
+}
+
 #estimate {
   text-align: center;
 }
@@ -63,4 +44,27 @@
 
 #price {
   float: right;
+}
+
+/* Checklist page */
+.cardLists ul li {
+  margin-left: 15px;
+  display: list-item !important;
+  list-style-type: disc !important;
+}
+
+.cardLists ul {
+  margin-top: 0px;
+  margin-bottom: 0px
+}
+
+.cardLists .card-content {
+  padding: 0px
+}
+
+.cardLists .card-title {
+  background-color: lightgray;
+  padding-left: 5px;
+  z-index: -1;
+  text-align: center
 }
