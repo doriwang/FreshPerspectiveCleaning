@@ -39,17 +39,18 @@ class EmployeePortal extends React.Component {
         // console.log("In Render:", this.state);
         return (
             <div className="container app-content row">
-                <h3>Employee Portal: employee login page</h3>
-                <div className="input-field col s12">
-                    <input id="username" onChange={ this.captureInput } type="email" />
-                    <label>Username</label>
+                <div className="card col l6 offset-l3">
+                    <div className="input-field col s12">
+                        <input id="username" onChange={ this.captureInput } type="email" />
+                        <label>Username</label>
+                    </div>
+                    <div className="input-field col s12">
+                        <input id="password" onChange={ this.captureInput } type="password" />
+                        <label>Password</label>
+                    </div>
+                    <div className="btn-login-div col s12"><a className="btn btn-login" href=" " onClick={ this.onSubmit }>Login</a>
+                    </div>
                 </div>
-                <div className="input-field col s12">
-                    <input id="password" onChange={ this.captureInput } type="password" />
-                    <label>Password</label>
-                </div>
-
-                <a className="btn" href=" " onClick={ this.onSubmit }>Login</a>
             </div>
         )
     }
