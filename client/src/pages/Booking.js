@@ -17,6 +17,7 @@ class Booking extends Component {
             selectedDate: "",
             startDate: new Date(),
             blockedDate: [],
+            
             // simon end
 
             // dori codes here
@@ -48,7 +49,7 @@ class Booking extends Component {
     handleDateChange = date => {
         this.setState({
             startDate: date,
-            selectedDate: date,
+            selectedDate: date.toString().slice(0,15),
             showCalendar: false,
         });
     };
@@ -179,7 +180,7 @@ class Booking extends Component {
                 <Row>
                     <BookingForm
                         // calendar simon codes
-                        date={ this.state.selectedDate.toString().slice(0, 15) }
+                        selectedDate={ this.state.selectedDate }
                         calendarStyle={ this.state.showCalendar ? { display: "block" } : { display: "none" } }
                         isWeekday={ this.isWeekday }
                         excludeDates={ this.state.blockedDate }

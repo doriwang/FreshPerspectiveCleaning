@@ -6,7 +6,8 @@ const bookingSchema = new Schema({
     bathNum: { type: String, required: true },
     footageNum: { type: String, required: true }, // Simon: footageNum might not be required
     frequency: { type: String, required: true },
-    selectedDate: { type: Date, required: true }, // Simon modifies it to Date type form string type
+    selectedDate: { type: String, required: true }, // Simon modifies it to Date type form string type
+ 
     arrivalTime: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -20,6 +21,12 @@ const bookingSchema = new Schema({
     estimate: { type: Number },
     jobAssignedTo: { type: String, default: "", }
 })
+
+// Simon
+bookingSchema.methods.setBookedDate = function() {
+    this.bookedDate = this.selectedDate.toString().slice(0,15);
+    return this.bookedDate;
+}
 
 const Booking = mongoose.model("Booking", bookingSchema)
 
