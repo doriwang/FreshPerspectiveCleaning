@@ -4,7 +4,7 @@ import { Row, Col } from "react-materialize"
 
 const Checklist = () => {
     return (
-        <Row className="container app-content">
+        <Row className="container app-content checklist">
             <Col l={ 12 } s={ 12 } className="cardLists">
                 <KitchenCard />
             </Col>

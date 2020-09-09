@@ -86,7 +86,7 @@ class Booking extends Component {
         })
     }
     handleFormSubmit = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         // collecting form data
         const { selectedDate,
             bedNum,
