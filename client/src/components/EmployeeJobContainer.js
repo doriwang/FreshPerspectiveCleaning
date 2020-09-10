@@ -7,7 +7,7 @@ const EmployeeJobContainer = () => {
     const [jobs, setJobs] = useState([])
 
     useEffect(() => {
-        axios.get("/api/getjob/Jeff")
+        axios.get("/api/getjob/" + localStorage.username)
             .then(res => setJobs(res.data))
     }, [])
 

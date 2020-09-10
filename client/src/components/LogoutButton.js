@@ -3,6 +3,7 @@ import React from "react"
 class LogoutButton extends React.Component {
 	onClick = () => {
 		localStorage.userLogin = "";
+		localStorage.username = "";
 	}
 
 	render() {
