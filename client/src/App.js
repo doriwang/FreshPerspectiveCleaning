@@ -7,6 +7,9 @@ import {
 } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import NewUserForm from "./components/NewUserForm"
+import ChangePasswordControl from "./components/ChangePasswordControl"
+import LogoutButton from "./components/LogoutButton"
 
 // page components
 import Home from "./pages/Home"
@@ -34,6 +37,11 @@ function App() {
         <Route exact path="/login" component={ EmployeePortal } />
         <Route exact path="/employee" component={ EmployeeControls } />
         <Route exact path="/admin" component={ AdminControls } />
+
+        {/* <Route exact path="/test" component={ AdminControls } /> */ }
+        <Route exact path="/creatnewuser" component={ NewUserForm } />
+        <Route exact path="/changepassword" component={ ChangePasswordControl } />
+        <Route exact path="/logout" component={ LogoutButton } />
         <Route path="*" component={ NotFound } />
       </Switch>
       <Footer />

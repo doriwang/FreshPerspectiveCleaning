@@ -1,14 +1,23 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Col, Button, Icon, TextInput, Textarea } from "react-materialize"
+import { Col, Button, Icon, TextInput, Textarea, Row } from "react-materialize"
 
 export const AdminJobCard = ({ job }) => {
+
+    // const [jobs, setJobs] = useState([])
+
+    // useEffect(() => {
+    //     axios.get("/api/getjobs")
+    //         .then(res => setJobs(res.data))
+    // }, [])
+
+    // console.log(jobs)
 
     const [formDisplay, setFormDisplay] = useState(false)
 
     const [jobDetails, setJobDetails] = useState(
         {
-            selectedDate: new Intl.DateTimeFormat('en-US').format(new Date(job.selectedDate.toString().slice(0, 15))),
+            selectedDate: job.selectedDate,
             bedNum: job.bedNum,
             bathNum: job.bathNum,
             footageNum: job.footageNum,
@@ -27,7 +36,8 @@ export const AdminJobCard = ({ job }) => {
             jobAssignedTo: job.jobAssignedTo,
             estimate: job.estimate,
             _id: job._id
-        })
+        }
+    )
 
     const {
         selectedDate,
@@ -64,7 +74,7 @@ export const AdminJobCard = ({ job }) => {
     }
 
     return (
-        <div>
+        <Row>
             <Col style={ formDisplay ? { display: "none" } : { display: "block" } } className="card" l={ 6 } s={ 12 }>
                 <div>
                     <h5>Job Details</h5>
@@ -125,7 +135,7 @@ export const AdminJobCard = ({ job }) => {
                         waves="light">UPDATE</Button>
                 </Col>
             </form>
-        </div>
+        </Row>
     )
 }
 
