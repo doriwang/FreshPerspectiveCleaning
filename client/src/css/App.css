@@ -1,0 +1,80 @@
+/* app main centent */
+.app-content {
+  padding-top: 20px;
+  min-height: 100vh;
+  position: relative
+}
+.btn {
+  background-color: gold ! important;
+}
+/* booking page */
+.bookingForm h5{
+  color: 	#006400;
+  font-weight: bold;
+}
+
+.btn-bookNow {
+  background-color: #2db92d;
+  width: 100%;
+}
+
+.bookNow-div {
+  padding: 0px !important;
+}
+
+#form-header {
+  margin-left: 11.25px
+}
+
+/* estimate card */
+.bookingForm .price-card {
+  position: sticky !important;
+  top: 0 !important;
+  margin-left: 5px !important;
+  width: 32% !important;
+}
+
+#estimate {
+  text-align: center;
+}
+
+#total {
+  padding-top: 10px;
+  border-top: 1px solid gray;
+}
+
+#price {
+  float: right;
+}
+
+/* Checklist page */
+.checklist {
+}
+.cardLists ul li {
+  margin-left: 15px;
+  display: list-item !important;
+  list-style-type: disc !important;
+}
+
+.cardLists ul {
+  margin-top: 0px;
+  margin-bottom: 0px
+}
+
+.cardLists .card-content {
+  padding: 0px
+}
+
+.cardLists .card-title {
+  background-color: lightgray;
+  padding-left: 5px;
+  z-index: -1;
+  text-align: center
+}
+
+/* company portal page */
+.btn-login {
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: gold !important
+}

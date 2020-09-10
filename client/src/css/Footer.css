@@ -1,0 +1,16 @@
+.page-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: #2db92d;
+    padding-top: 0px;
+    z-index: 1;
+  }
+
+  .footer-row {
+    margin-bottom: 0px
+  }
+
+.footer-copyright {
+    border-top: 2px solid yellow;
+    background-color: #28a428;
+}

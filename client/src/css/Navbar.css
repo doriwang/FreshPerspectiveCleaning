@@ -1,0 +1,31 @@
+nav {
+    background-color: #2db92d;
+}
+
+nav ul li a {
+    color: #FFFF00
+}
+
+#logo {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    padding-top: 7px;
+    padding-bottom: 7px
+}
+
+#logoName {
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    padding-left: 10px;
+    margin-top: auto;
+    position: absolute;
+    white-space: nowrap;
+    color: #FFFF00
+}
+
+@media only screen and (max-width: 600px) {
+    #logoName {
+        display: none;
+    }
+}
