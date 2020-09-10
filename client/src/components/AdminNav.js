@@ -13,20 +13,20 @@ class AdminNav extends Component {
                 <nav className="company-nav">
                     <div className="nav-wrapper">
                         <span className="brand-logo"><span className="companyNavName">Admin Portal</span></span>
-                        <a href="#menu" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                        <a href="#menu" data-target="mobile-admin" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             <li><NavLink to="/admin">View/Edit Jobs</NavLink></li>
-                            <li><NavLink to="/createnewuser">Create User</NavLink></li>
-                            <li><NavLink to="/changepassword">Change Password</NavLink></li>
+                            <li><NavLink to="/createNewUser">Create New User</NavLink></li>
+                            <li><NavLink to="/changePassword">Change Password</NavLink></li>
                             <LogoutButton />
                         </ul>
                     </div>
                 </nav>
-                <ul className="sidenav" id="mobile-demo">
-                    <li><NavLink to="/adminhome">Home</NavLink></li>
-                    <li><NavLink to="/creatnewUser">Creat NewUser</NavLink></li>
-                    <li><NavLink to="/changepassword">Change Password</NavLink></li>
-                    <li><NavLink to="/logout">LogOut</NavLink></li>
+                <ul className="sidenav" id="mobile-admin">
+                    <li><NavLink to="/admin">Home</NavLink></li>
+                    <li><NavLink to="/createNewUser">Create New User</NavLink></li>
+                    <li><NavLink to="/changePassword">Change Password</NavLink></li>
+                    <LogoutButton />
                 </ul>
             </div>
         )
