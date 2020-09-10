@@ -14,7 +14,7 @@ import img8 from "../images/8.jpg"
 import img9 from "../images/9.jpg"
 import img10 from "../images/10.jpg"
 
-const images = [ 
+const images = [
     img1,
     img2,
     img3,
@@ -31,28 +31,28 @@ class Home extends React.Component {
 
     componentDidMount() {
         let root = $("#HomeCarousel");
-        root.attr("style", `height: ${window.screen.availWidth * 2/3}px`)
+        root.attr("style", `height: ${window.screen.availWidth * 2 / 3}px`)
 
-        this.interval = window.setInterval(() =>{
+        this.interval = window.setInterval(() => {
             M.Carousel.getInstance(root).next();
-        }, 5000)
+        }, 3000)
     }
 
     componentWillUnmount() {
         window.clearInterval(this.interval)
     }
-    
+
     render() {
         return (
             <div className="">
-            <Carousel 
-                carouselId="HomeCarousel"
-                images={images}
-                options={{
-                    fullWidth: true,
-                }}
-            
-            />
+                <Carousel
+                    carouselId="HomeCarousel"
+                    images={ images }
+                    options={ {
+                        fullWidth: true,
+                    } }
+
+                />
             </div>
         )
     }
