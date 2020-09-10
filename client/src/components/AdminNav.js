@@ -9,15 +9,15 @@ class AdminNav extends Component {
     render() {
         return (
             <div>
-                <nav >
+                <nav className="company-nav">
                     <div className="nav-wrapper">
-                        <span className="brand-logo"><span id="adminLogoName">Admin Homepage</span></span>
+                        <span className="brand-logo"><span className="companyNavName">Admin Portal</span></span>
                         <a href="#menu" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
-                            <li><NavLink to="/admin">Edit/View Jobs</NavLink></li>
+                            <li><NavLink to="/admin">View/Edit Jobs</NavLink></li>
                             <li><NavLink to="/createnewuser">Create User</NavLink></li>
                             <li><NavLink to="/changepassword">Change Password</NavLink></li>
-                            <li><NavLink to="/logout">LogOut</NavLink></li>
+                            <li><NavLink to="/logout">Log Out</NavLink></li>
                         </ul>
                     </div>
                 </nav>

@@ -78,3 +78,20 @@
   width: 100%;
   background-color: gold !important
 }
+
+.company-nav {
+  background-color: gold 
+}
+
+.company-nav ul li a {
+  color: #2db92d
+}
+
+.companyNavName {
+  color: #2db92d
+}
+
+.control-page {
+  margin-top: 3px;
+  min-height: 100vh
+}

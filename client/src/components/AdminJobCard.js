@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import axios from "axios"
-import { Col, Button, Icon, TextInput, Textarea, Row } from "react-materialize"
+import { Col, Button, Icon, TextInput, Textarea } from "react-materialize"
 
 export const AdminJobCard = ({ job }) => {
-
-    // const [jobs, setJobs] = useState([])
-
-    // useEffect(() => {
-    //     axios.get("/api/getjobs")
-    //         .then(res => setJobs(res.data))
-    // }, [])
-
-    // console.log(jobs)
 
     const [formDisplay, setFormDisplay] = useState(false)
 
@@ -74,7 +65,7 @@ export const AdminJobCard = ({ job }) => {
     }
 
     return (
-        <Row>
+        <div>
             <Col style={ formDisplay ? { display: "none" } : { display: "block" } } className="card" l={ 6 } s={ 12 }>
                 <div>
                     <h5>Job Details</h5>
@@ -132,10 +123,11 @@ export const AdminJobCard = ({ job }) => {
                         icon={ <Icon>update</Icon> }
                         medium="true"
                         left="true"
-                        waves="light">UPDATE</Button>
+                        waves="light">UPDATE
+                    </Button>
                 </Col>
             </form>
-        </Row>
+        </div>
     )
 }
 

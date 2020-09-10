@@ -4,8 +4,6 @@ import M from "materialize-css";
 import Config from "../Config"
 const BACKEND_HOST = Config.BACKEND_HOST
 
-
-
 class EmployeePortal extends React.Component {
     state = {
         username: "",
