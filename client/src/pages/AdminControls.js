@@ -17,8 +17,7 @@ const AdminControls = () => {
 
 	return (
 		<div className="container app-content">
-			<h4>Admin Controls</h4>
-
+			
 			<Row>
 				{ jobs.map((job, _id) => {
 					return (

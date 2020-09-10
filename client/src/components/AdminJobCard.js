@@ -6,9 +6,28 @@ export const AdminJobCard = ({ job }) => {
 
     const [formDisplay, setFormDisplay] = useState(false)
 
-    const displayForm = () => {
-        setFormDisplay(true)
-    }
+    const [jobDetails, setJobDetails] = useState(
+        {
+            selectedDate: new Intl.DateTimeFormat('en-US').format(new Date(job.selectedDate.toString().slice(0, 15))),
+            bedNum: job.bedNum,
+            bathNum: job.bathNum,
+            footageNum: job.footageNum,
+            frequency: job.frequency,
+            arrivalTime: job.arrivalTime,
+            firstName: job.firstName,
+            lastName: job.lastName,
+            phone: job.phone,
+            email: job.email,
+            address1: job.address1,
+            address2: job.address2,
+            city: job.city,
+            state: job.state,
+            zipCode: job.zipCode,
+            notes: job.notes,
+            jobAssignedTo: job.jobAssignedTo,
+            estimate: job.estimate,
+            _id: job._id
+        })
 
     const {
         selectedDate,
@@ -28,21 +47,20 @@ export const AdminJobCard = ({ job }) => {
         zipCode,
         notes,
         jobAssignedTo,
-        estimate, _id } = job
+        estimate, _id } = jobDetails
+
+    const displayForm = () => {
+        setFormDisplay(true)
+    }
 
     const updateJob = () => {
-        axios.put(`/api/updatejob/${_id}`)
+        axios.put(`/api/updatejob/${_id}`, jobDetails)
             .then(res => console.log(res))
     }
 
     const deleteJob = () => {
         axios.delete(`/api/deletejob/${_id}`)
             .then(res => console.log(res))
-    }
-
-    const emptyValue = (event) => {
-        event.target.value = ("")
-        console.log(event.target.value)
     }
 
     return (
@@ -58,16 +76,17 @@ export const AdminJobCard = ({ job }) => {
                         waves="light"
                         onClick={ displayForm }
                     />
-                    <Button
-                        floating
-                        icon={ <Icon>delete_forever</Icon> }
-                        medium="true"
-                        node="button"
-                        waves="light"
-                        onClick={ deleteJob }
-                    />
+                    <form onSubmit={ deleteJob }>
+                        <Button
+                            floating
+                            icon={ <Icon>delete_forever</Icon> }
+                            medium="true"
+                            node="button"
+                            waves="light"
+                        />
+                    </form>
                 </div>
-                <p>Date: { new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.split("T")[0])) } { arrivalTime } </p>
+                <p>Date: { selectedDate } { arrivalTime } </p>
                 <p>Client Name: { firstName } { lastName }</p>
                 <p>Client Contact: { phone } | { email }</p>
                 <p>House Summary: { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
@@ -80,24 +99,25 @@ export const AdminJobCard = ({ job }) => {
             <form onSubmit={ updateJob }>
                 <Col className="card" l={ 12 } s={ 12 } style={ formDisplay ? { display: "block" } : { display: "none" } }>
                     <h5>Client Summary:</h5>
-                    <TextInput l={ 3 } s={ 12 } label="First Name" value={ firstName } name="firstName" onClick={ emptyValue } />
-                    <TextInput l={ 3 } s={ 12 } label="Last Name" value={ lastName } name="lastName" onClick={ emptyValue } />
-                    <TextInput l={ 3 } s={ 12 } label="Phone" value={ phone } name="phone" />
-                    <TextInput l={ 3 } s={ 12 } label="Email" value={ email } name="email" />
+                    <TextInput l={ 3 } s={ 12 } label="First Name" defaultValue={ firstName } name="firstName" onChange={ e => setJobDetails({ ...jobDetails, firstName: e.target.value }, console.log(e.target.value)) }
+                    />
+                    <TextInput l={ 3 } s={ 12 } label="Last Name" defaultValue={ lastName } name="lastName" onChange={ e => setJobDetails({ ...jobDetails, lastName: e.target.value }, console.log(e.target.value)) } />
+                    <TextInput l={ 3 } s={ 12 } label="Phone" defaultValue={ phone } name="phone" onChange={ e => setJobDetails({ ...jobDetails, phone: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="Email" defaultValue={ email } name="email" onChange={ e => setJobDetails({ ...jobDetails, email: e.target.value }, console.log(e.target.value)) } />
                     <h5>Job Summary:</h5>
-                    <TextInput l={ 2 } s={ 12 } label="Date" value={ new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.split("T")[0])) } name="selectedDate" />
-                    <TextInput l={ 4 } s={ 12 } label="Arrival Time" value={ arrivalTime } name="arrivalTime" />
-                    <TextInput className="input-field" l={ 4 } s={ 12 } label="Job Assigned To" value={ jobAssignedTo } name="jobAssignedTo" onClick={ () => emptyValue } />
-                    <TextInput l={ 2 } s={ 12 } label="Estimate" value={ `${estimate}` } name="estimate" />
-                    <TextInput l={ 3 } s={ 12 } label="# of Bedrooms" value={ bedNum } name="bedNum" />
-                    <TextInput l={ 3 } s={ 12 } label="# of Bathroom" value={ bathNum } name="bathNum" />
-                    <TextInput l={ 3 } s={ 12 } label="# of Square Footage" value={ footageNum } name="footageNum" />
-                    <TextInput l={ 3 } s={ 12 } label="Frequency" value={ frequency } name="frequency" />
-                    <TextInput l={ 3 } s={ 12 } label="Address 1" value={ address1 } name="address1" />
-                    <TextInput l={ 3 } s={ 12 } label="Address 2" value={ address2 } name="address2" />
-                    <TextInput l={ 3 } s={ 12 } label="City" value={ city } name="city" />
-                    <TextInput l={ 3 } s={ 12 } label="Zip Code" value={ zipCode } name="zipCode" />
-                    <Textarea l={ 12 } name="notes" className="materialize-textarea" label="Special Request/Instruction" value={ notes } name="notes" />
+                    <TextInput l={ 2 } s={ 12 } label="Date" defaultValue={ selectedDate } name="selectedDate" onChange={ e => setJobDetails({ ...jobDetails, selectedDate: e.target.value }) } />
+                    <TextInput l={ 4 } s={ 12 } label="Arrival Time" defaultValue={ arrivalTime } name="arrivalTime" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />
+                    <TextInput className="input-field" l={ 4 } s={ 12 } label="Job Assigned To" defaultValue={ jobAssignedTo } name="jobAssignedTo" onChange={ e => setJobDetails({ ...jobDetails, jobAssignedTo: e.target.value }) } />
+                    <TextInput l={ 2 } s={ 12 } label="Estimate" defaultValue={ `${estimate}` } name="estimate" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="# of Bedrooms" defaultValue={ bedNum } name="bedNum" onChange={ e => setJobDetails({ ...jobDetails, estimate: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="# of Bathroom" defaultValue={ bathNum } name="bathNum" onChange={ e => setJobDetails({ ...jobDetails, bathNum: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="# of Square Footage" defaultValue={ footageNum } name="footageNum" onChange={ e => setJobDetails({ ...jobDetails, footageNum: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="Frequency" defaultValue={ frequency } name="frequency" onChange={ e => setJobDetails({ ...jobDetails, frequency: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="Address 1" defaultValue={ address1 } name="address1" onChange={ e => setJobDetails({ ...jobDetails, address1: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="Address 2" defaultValue={ address2 } name="address2" onChange={ e => setJobDetails({ ...jobDetails, address2: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="City" defaultValue={ city } name="city" onChange={ e => setJobDetails({ ...jobDetails, city: e.target.value }) } />
+                    <TextInput l={ 3 } s={ 12 } label="Zip Code" defaultValue={ zipCode } name="zipCode" onChange={ e => setJobDetails({ ...jobDetails, zipCode: e.target.value }) } />
+                    <Textarea l={ 12 } name="notes" className="materialize-textarea" label="Special Request/Instruction" defaultValue={ notes } onChange={ e => setJobDetails({ ...jobDetails, notes: e.target.value }) } />
                     <Button
                         icon={ <Icon>update</Icon> }
                         medium="true"
