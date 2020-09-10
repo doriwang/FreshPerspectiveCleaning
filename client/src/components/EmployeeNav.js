@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
 import M from "materialize-css"
+import LogoutButton from "./LogoutButton"
 
 class EmployeeNav extends Component {
     componentDidMount() {
@@ -14,7 +15,7 @@ class EmployeeNav extends Component {
                     <ul className="right hide-on-med-and-down">
                         <li><NavLink to="/employee">View Jobs</NavLink></li>
                         <li><NavLink to="/changepassword">Change Password</NavLink></li>
-                        <li><NavLink to="/logout">Log Out</NavLink></li>
+                        <LogoutButton />
                     </ul>
                 </div>
             </nav>
