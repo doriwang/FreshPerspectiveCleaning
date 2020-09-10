@@ -5,7 +5,7 @@ const employeeSchema = new Schema({
 	firstName: { type: String },
 	lastName: { type: String },
 	username: { type: String },
-	role: {enum: ["admin", "employee"] },
+	role: { type: String, enum: ["admin", "employee"] },
 	hash: { type: String },
 })
 

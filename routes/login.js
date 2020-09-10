@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken")
 // the only problem will be any existing logins are invalidated.
 
 const SECRET = process.env.JWT_SECRET || "DefaultSecretIsNotAGoodSecret"
-const EXPIRY = process.env.JWT_EXPIRY || (60 * 60) // default is 1 hour (60 sec* 60 min )
+const EXPIRY = process.env.JWT_EXPIRY || (60 * 60 * 24 * 7) // default is 1 week
 
 function signToken(employee) {
 	let token = { _id: employee.id, username: employee.username };
@@ -86,7 +86,45 @@ router.post("/changePassword", async (req, res) => {
 	await employee.save();
 
 	res.json({ success: true })
-})
+});
+
+router.post("/newUser", async (req, res) => {
+	const { username, firstName, lastName, password, role, token } = req.body;
+
+	if (!username || !firstName || !lastName || !role || !password || !token) {
+		res.json({ success: false, message: "Missing information." });
+		return;
+	}
+
+	const userData = unpackToken(token);
+	if (!userData) {
+		res.json({ success: false, message: "Invalid token, login may have expired" });
+		return;
+	}
+
+	const instigator = await db.Employee.findOne(userData);
+	if (!instigator || instigator.role !== "admin") {
+		res.json({ success: false, message: "Insufficient permissions." });
+		return;
+	}
+
+	const check = await db.Employee.findOne({ username });
+	if (check) {
+		res.json({ success: false, message: "User with that username already exists." });
+		return;
+	} 
+
+	const hash = await argon2.hash(password);
+	const created = await db.Employee.create({
+		username, firstName, lastName, hash, role
+	})
+	console.log(`new user created! ${created.username}, is a ${created.role}`)
+
+	res.json({success: true});
+	
+});
+
+
 
 
 

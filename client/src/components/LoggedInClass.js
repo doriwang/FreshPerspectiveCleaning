@@ -32,8 +32,8 @@ class LoggedInControlExample extends React.Component {
 	}
 
 	render() {
-		return <div className="col s6 row">
-			<h4>Logged In Control Example:</h4>
+		return <div className="col s6 row card">
+			<h6 className = "center">Logged In Control Example:</h6>
 			<div className="input-field col s12">
 				<input id="testData" onChange={ this.captureInput } type="text" />
 				<label for="testData">Test Data</label>

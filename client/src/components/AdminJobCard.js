@@ -128,3 +128,5 @@ export const AdminJobCard = ({ job }) => {
         </div>
     )
 }
+
+export default AdminJobCard;
