@@ -3,8 +3,11 @@ const db = require("../models");
 
 router.post("/booknow", (req, res) => {
     db.Booking.create(req.body)
-        .then(data => res.json(data))
-        .catch(err => res.status(500).json(err));
+        .then(data => res.json({ success: true, data }))
+        .catch(err => { 
+			console.log(err);
+			res.status(500).json({ success: false, err })
+		});
 })
 
 router.get("/getjobs", (req, res) => {
