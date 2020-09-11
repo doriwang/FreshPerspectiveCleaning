@@ -50,9 +50,8 @@ class Home extends React.Component {
                     images={ images }
                     options={ {
                         fullWidth: true,
-                    } }
-
-                />
+                    } }>
+                </Carousel>
             </div>
         )
     }

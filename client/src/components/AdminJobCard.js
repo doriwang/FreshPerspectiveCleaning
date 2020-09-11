@@ -26,7 +26,8 @@ export const AdminJobCard = ({ job }) => {
             notes: job.notes,
             jobAssignedTo: job.jobAssignedTo,
             estimate: job.estimate,
-            _id: job._id
+            _id: job._id,
+            date: null
         }
     )
 
@@ -48,14 +49,40 @@ export const AdminJobCard = ({ job }) => {
         zipCode,
         notes,
         jobAssignedTo,
-        estimate, _id } = jobDetails
+        estimate, _id, date } = jobDetails
 
     const displayForm = () => {
         setFormDisplay(true)
     }
 
     const updateJob = () => {
-        axios.put(`/api/updatejob/${_id}`, jobDetails)
+        // e.preventDefault()
+        const date1 = new Date(selectedDate)
+        const data = {
+            selectedDate: selectedDate,
+            bedNum: bedNum,
+            bathNum: bathNum,
+            footageNum: footageNum,
+            frequency: frequency,
+            arrivalTime: arrivalTime,
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            email: email,
+            address1: address1,
+            address2: address2,
+            city: city,
+            state: state,
+            zipCode: zipCode,
+            notes: notes,
+            jobAssignedTo: jobAssignedTo,
+            estimate: estimate,
+            _id: _id,
+            date: date1
+        }
+
+        console.log(data)
+        axios.put(`/api/updatejob/${_id}`, data)
             .then(res => console.log(res))
     }
 
@@ -68,7 +95,7 @@ export const AdminJobCard = ({ job }) => {
         <div>
             <Col style={ formDisplay ? { display: "none" } : { display: "block" } } className="card" l={ 6 } s={ 12 }>
                 <div>
-                    <h5>Job Details</h5>
+                    <h5 className="job-card">Job Details</h5>
                     <Button
                         floating
                         icon={ <Icon>mode_edit</Icon> }
@@ -87,14 +114,14 @@ export const AdminJobCard = ({ job }) => {
                         />
                     </form>
                 </div>
-                <p>Date: { selectedDate } { arrivalTime } </p>
-                <p>Client Name: { firstName } { lastName }</p>
-                <p>Client Contact: { phone } | { email }</p>
-                <p>House Summary: { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
-                <p>Location: { address1 }, { address2 } { city }, { state }{ zipCode }</p>
-                <p>Special Requests: { notes }</p>
-                <p>Estimate: ${ estimate } </p>
-                <p>Job Assigned To: { jobAssignedTo }</p>
+                <p><span className="job-card-title">Date: </span> { selectedDate } { arrivalTime } </p>
+                <p><span className="job-card-title">Client Name: </span> { firstName } { lastName }</p>
+                <p><span className="job-card-title">Client Contact: </span> { phone } | { email }</p>
+                <p><span className="job-card-title">House Summary: </span> { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
+                <p><span className="job-card-title">Location: </span> { address1 }, { address2 } { city }, { state }{ zipCode }</p>
+                <p><span className="job-card-title">Special Requests: </span> { notes }</p>
+                <p><span className="job-card-title">Estimate: </span>${ estimate } </p>
+                <p><span className="job-card-title">Job Assigned To: </span>  { jobAssignedTo }</p>
             </Col>
 
             <form onSubmit={ updateJob }>
@@ -106,7 +133,9 @@ export const AdminJobCard = ({ job }) => {
                     <TextInput l={ 3 } s={ 12 } label="Phone" defaultValue={ phone } name="phone" onChange={ e => setJobDetails({ ...jobDetails, phone: e.target.value }) } />
                     <TextInput l={ 3 } s={ 12 } label="Email" defaultValue={ email } name="email" onChange={ e => setJobDetails({ ...jobDetails, email: e.target.value }, console.log(e.target.value)) } />
                     <h5>Job Summary:</h5>
-                    <TextInput l={ 2 } s={ 12 } label="Date" defaultValue={ selectedDate } name="selectedDate" onChange={ e => setJobDetails({ ...jobDetails, selectedDate: e.target.value }) } />
+                    <TextInput l={ 2 } s={ 12 } label="Date" defaultValue={ selectedDate } name="selectedDate" onChange={ e => setJobDetails({ ...jobDetails, selectedDate: e.target.value }
+                        // , { ...jobDetails, date: new Date(e.target.value) }
+                    ) } />
                     <TextInput l={ 4 } s={ 12 } label="Arrival Time" defaultValue={ arrivalTime } name="arrivalTime" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />
                     <TextInput className="input-field" l={ 4 } s={ 12 } label="Job Assigned To" defaultValue={ jobAssignedTo } name="jobAssignedTo" onChange={ e => setJobDetails({ ...jobDetails, jobAssignedTo: e.target.value }) } />
                     <TextInput l={ 2 } s={ 12 } label="Estimate" defaultValue={ `${estimate}` } name="estimate" onChange={ e => setJobDetails({ ...jobDetails, arrivalTime: e.target.value }) } />

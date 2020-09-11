@@ -95,3 +95,28 @@
   margin-top: 3px;
   min-height: 100vh
 }
+
+.job-card {
+  text-align: center;
+  font-weight: bold
+}
+
+.job-card-title {
+  font-weight: bold
+}
+
+.check-btn {
+  width: 46%;
+  margin-bottom: 10px;
+  text-align: center
+  /* background-color: gold; */
+}
+
+.in {
+  background-color: #2db92d
+}
+
+.out {
+  background-color: red;
+  float: right
+}

@@ -9,14 +9,14 @@ router.post("/booknow", (req, res) => {
 
 router.get("/getjobs", (req, res) => {
     db.Booking.find()
-        .sort({ selectedDate: 1 })
+        .sort({ date: 1 })
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })
 
 router.get("/getjob/:jobAssignedTo", (req, res) => {
     db.Booking.find({ jobAssignedTo: req.params.jobAssignedTo })
-        .sort({ selectedDate: 1 })
+        .sort({ date: 1 })
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })
