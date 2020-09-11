@@ -49,7 +49,7 @@ export const AdminJobCard = ({ job }) => {
         zipCode,
         notes,
         jobAssignedTo,
-        estimate, _id, date } = jobDetails
+        estimate, _id } = jobDetails
 
     const displayForm = () => {
         setFormDisplay(true)

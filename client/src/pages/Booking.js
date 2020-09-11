@@ -54,27 +54,27 @@ class Booking extends Component {
             showCalendar: false,
         });
 
-        
+
         Axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
-        .then(res => {
-            if (res.data.length === 0) {
-                this.setState({
+            .then(res => {
+                if (res.data.length === 0) {
+                    this.setState({
                         afternoonDisabled: false,
                         morningDisabled: false
-                })
-            } else if (res.data[0].arrivalTime === "Morning Arrival between 8AM - 9AM") {
-                this.setState({
-                    morningDisabled: true,
-                    afternoonDisabled: false
-                })
-            } else if (res.data[0].arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
-                this.setState({
-                    afternoonDisabled: true,
-                    morningDisabled: false
-                })
-            } 
-        })
-        .catch(err => console.log(err))
+                    })
+                } else if (res.data[0].arrivalTime === "Morning Arrival between 8AM - 9AM") {
+                    this.setState({
+                        morningDisabled: true,
+                        afternoonDisabled: false
+                    })
+                } else if (res.data[0].arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
+                    this.setState({
+                        afternoonDisabled: true,
+                        morningDisabled: false
+                    })
+                }
+            })
+            .catch(err => console.log(err))
 
     };
     isWeekday = date => {
@@ -133,6 +133,7 @@ class Booking extends Component {
             city,
             zipCode,
             notes, estimate, date } = this.state
+
         const formData = {
             selectedDate,
             bedNum,
@@ -214,8 +215,8 @@ class Booking extends Component {
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                    morningDisabled={this.state.morningDisabled}
-                    afternoonDisabled={this.state.afternoonDisabled}
+                    morningDisabled={ this.state.morningDisabled }
+                    afternoonDisabled={ this.state.afternoonDisabled }
                 />
             </div>
         )
