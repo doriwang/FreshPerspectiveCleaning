@@ -53,7 +53,7 @@ class Booking extends Component {
         });
 
 
-        Axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
+        axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
             .then(res => {
                 if (res.data.length === 0) {
                     this.setState({
