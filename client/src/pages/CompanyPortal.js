@@ -1,8 +1,6 @@
 import React from "react"
 import axios from "axios"
 import M from "materialize-css";
-import Config from "../Config"
-const BACKEND_HOST = Config.BACKEND_HOST
 
 
 
@@ -16,7 +14,7 @@ class EmployeePortal extends React.Component {
         event.preventDefault();
 
         const { username, password } = this.state;
-        const result = await axios.post(BACKEND_HOST + "/login", { username, password })
+        const result = await axios.post("/login", { username, password })
 
         const { success, token, message, role } = result.data;
 
