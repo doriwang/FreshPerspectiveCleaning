@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route
+} from "react-router-dom"
 import ChangePasswordControl from "../components/ChangePasswordControl"
-import NewUserForm from "../components/NewUserForm"
 import LogoutButton from "../components/LogoutButton"
-import { Row } from "react-materialize"
-import axios from "axios"
-import EmployeeJobCard from "../components/EmployeeJobCard"
+import EmployeeNav from "../components/EmployeeNav"
+import EmployeeJobContainer from "../components/EmployeeJobContainer"
 
 const EmployeeControls = () => {
 
-	const [jobs, setJobs] = useState([])
-
-	useEffect(() => {
-		axios.get("/api/getjob/Jeff")
-			.then(res => setJobs(res.data))
-	}, [])
-
 	return (
-		<div className="container app-content">
-			<Row>
-				{ jobs.map((job, _id) => {
-					return (
-						<EmployeeJobCard
-							key={ _id }
-							job={ job }
-						/>
-					)
-				}) }
-				<ChangePasswordControl />
-				<LogoutButton />
-			</Row>
+		<div className="container control-page">
+			<Router>
+				<EmployeeNav />
+				<Switch>
+					<Route exact path="/employee" component={ EmployeeJobContainer } />
+					<Route exact path="/changepassword" component={ ChangePasswordControl } />
+					<Route exact path="/logout" component={ LogoutButton } />
+				</Switch>
+			</Router>
 		</div>
 	)
 }

@@ -1,8 +1,8 @@
-nav {
+.main-nav {
     background-color: #2db92d;
 }
 
-nav ul li a {
+.main-nav ul li a {
     color: #FFFF00
 }
 

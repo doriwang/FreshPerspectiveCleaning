@@ -14,8 +14,8 @@ class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav >
-                    <div className="nav-wrapper container">
+                <nav className="main-nav">
+                    <div className="nav-wrapper container ">
                         <span className="brand-logo"><img id="logo" src={ logo } alt="cleaning-logo"></img><span id="logoName">Fresh Perspective</span></span>
                         <a href="#menu" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">

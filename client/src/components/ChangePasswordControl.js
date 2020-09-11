@@ -36,21 +36,21 @@ class ChangePasswordControl extends React.Component {
 			M.toast({ html: "Password Changed Failed!" + message, classes: "red" })
 		}
 	}
-    
-    render() {
-        return <div className="col s6 row card">
+
+	render() {
+		return <div className="col s6 row card">
 			<h6 className="center">Change Password Form:</h6>
-       	 	<div className="input-field col s12">
-				<input id="oldPassword" onChange={this.captureInput} type="password" />
-				<label for="oldPassword">Old Password</label>
+			<div className="input-field col s12">
+				<input id="oldPassword" onChange={ this.captureInput } type="password" />
+				<label htmlFor="oldPassword">Old Password</label>
 			</div>
 			<div className="input-field col s12">
 				<input id="newPassword" onChange={ this.captureInput } type="password" />
-				<label for="newPassword">New Password</label>
+				<label htmlFor="newPassword">New Password</label>
 			</div>
 			<div className="input-field col s12">
 				<input id="confirmPassword" onChange={ this.captureInput } type="password" />
-				<label for="confirmPassword">Confirm Password</label>
+				<label htmlFor="confirmPassword">Confirm Password</label>
 			</div>
 			<a href=" " className="btn" onClick={ this.onSubmit }>Change Password</a>
 		</div>

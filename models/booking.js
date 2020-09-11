@@ -7,7 +7,7 @@ const bookingSchema = new Schema({
     footageNum: { type: String, required: true }, // Simon: footageNum might not be required
     frequency: { type: String, required: true },
     selectedDate: { type: String, required: true }, // Simon modifies it to Date type form string type
- 
+    date: { type: Date },
     arrivalTime: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -24,8 +24,8 @@ const bookingSchema = new Schema({
 })
 
 // Simon
-bookingSchema.methods.setBookedDate = function() {
-    this.bookedDate = this.selectedDate.toString().slice(0,15);
+bookingSchema.methods.setBookedDate = function () {
+    this.bookedDate = this.selectedDate.toString().slice(0, 15);
     return this.bookedDate;
 }
 

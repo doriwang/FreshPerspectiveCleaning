@@ -9,22 +9,23 @@ router.post("/booknow", (req, res) => {
 
 router.get("/getjobs", (req, res) => {
     db.Booking.find()
-        .sort({ selectedDate: 1 })
+        .sort({ date: 1 })
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })
 
 router.get("/getjob/:jobAssignedTo", (req, res) => {
     db.Booking.find({ jobAssignedTo: req.params.jobAssignedTo })
-        .sort({ selectedDate: 1 })
+        .sort({ date: 1 })
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })
 
-router.get("/getselected", (req, res) => {
-    db.Booking.findOne(req.params)
+router.get("/selected/:selectedDate", (req, res) => {
+    console.log(req.params)
+    db.Booking.find({ selectedDate: req.params.selectedDate})
         .then(data => {
-            console.log("getselected");
+            
             res.json(data)
         })
         .catch(err => res.json(err));

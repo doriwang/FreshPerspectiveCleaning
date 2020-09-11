@@ -78,3 +78,45 @@
   width: 100%;
   background-color: gold !important
 }
+
+.company-nav {
+  background-color: gold 
+}
+
+.company-nav ul li a {
+  color: #2db92d
+}
+
+.companyNavName {
+  color: #2db92d
+}
+
+.control-page {
+  margin-top: 3px;
+  min-height: 100vh
+}
+
+.job-card {
+  text-align: center;
+  font-weight: bold
+}
+
+.job-card-title {
+  font-weight: bold
+}
+
+.check-btn {
+  width: 46%;
+  margin-bottom: 10px;
+  text-align: center
+  /* background-color: gold; */
+}
+
+.in {
+  background-color: #2db92d
+}
+
+.out {
+  background-color: red;
+  float: right
+}
