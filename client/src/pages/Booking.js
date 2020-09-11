@@ -4,6 +4,8 @@ import axios from "axios"
 import M from "materialize-css"
 import { calculatePrice } from "../utils/calculatePrice"
 import { findBlockDates } from "../utils/findBlockDates"
+import Axios from "axios";
+
 class Booking extends Component {
     constructor(props) {
         super(props)
@@ -33,7 +35,9 @@ class Booking extends Component {
             city: "",
             zipCode: "",
             notes: "",
-            estimate: 0.00.toFixed(2)
+            estimate: 0.00.toFixed(2),
+            morningDisabled: false,
+            afternoonDisabled: false,
         }
     }
     // simon start calendar method
@@ -46,6 +50,29 @@ class Booking extends Component {
             selectedDate: date.toString().slice(0, 15),
             showCalendar: false,
         });
+
+        
+        Axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
+        .then(res => {
+            if (res.data.length === 0) {
+                this.setState({
+                        afternoonDisabled: false,
+                        morningDisabled: false
+                })
+            } else if (res.data[0].arrivalTime === "Morning Arrival between 8AM - 9AM") {
+                this.setState({
+                    morningDisabled: true,
+                    afternoonDisabled: false
+                })
+            } else if (res.data[0].arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
+                this.setState({
+                    afternoonDisabled: true,
+                    morningDisabled: false
+                })
+            } 
+        })
+        .catch(err => console.log(err))
+
     };
     isWeekday = date => {
         const day = date.getDay();
@@ -182,6 +209,8 @@ class Booking extends Component {
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
+                    morningDisabled={this.state.morningDisabled}
+                    afternoonDisabled={this.state.afternoonDisabled}
                 />
             </div>
         )
