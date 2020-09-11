@@ -12,6 +12,7 @@ class Booking extends Component {
             // calendar state, simon codes here
             showCalendar: false,
             selectedDate: "",
+            date: new Date(),
             startDate: new Date(),
             blockedDate: [],
             // simon end
@@ -41,9 +42,11 @@ class Booking extends Component {
         this.setState({ showCalendar: true })
     }
     handleDateChange = date => {
+        const displayDate = date.toString().slice(0, 15)
         this.setState({
             startDate: date,
-            selectedDate: date.toString().slice(0, 15),
+            selectedDate: displayDate,
+            date: new Date(displayDate),
             showCalendar: false,
         });
     };
@@ -102,7 +105,7 @@ class Booking extends Component {
             address2,
             city,
             zipCode,
-            notes, estimate } = this.state
+            notes, estimate, date } = this.state
         const formData = {
             selectedDate,
             bedNum,
@@ -119,7 +122,8 @@ class Booking extends Component {
             city,
             zipCode,
             notes,
-            estimate
+            estimate,
+            date
         }
         axios.post("/api/booknow", formData)
             .then(res => {
@@ -139,7 +143,8 @@ class Booking extends Component {
                     city: "",
                     zipCode: "",
                     notes: "",
-                    estimate: 0.00.toFixed(2)
+                    estimate: 0.00.toFixed(2),
+                    date: new Date()
                 })
             }).catch(err => console.log(err))
     }

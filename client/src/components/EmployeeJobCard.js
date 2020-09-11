@@ -1,5 +1,5 @@
 import React from "react"
-import { Col } from "react-materialize"
+import { Col, Button } from "react-materialize"
 
 const EmployeeJobCard = ({ job }) => {
 
@@ -24,13 +24,16 @@ const EmployeeJobCard = ({ job }) => {
 
     return (
         <Col l={ 6 } s={ 12 } className="card">
-            <p>Date: { new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.toString().slice(0, 15))) } { arrivalTime } </p>
-            <p>Job Assigned To: { jobAssignedTo }</p>
-            <p>Client Name: { firstName } { lastName }</p>
-            <p>Client Contact: { phone } | { email }</p>
-            <p>House Summary: { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
-            <p>Location: { address1 }, { address2 } { city }, { state }{ zipCode }</p>
-            <p>Special Requests: { notes }</p>
+            <div><h5 className="job-card">Job Details</h5></div>
+            <p><span className="job-card-title">Date: </span>{ new Intl.DateTimeFormat('en-US').format(new Date(selectedDate.toString().slice(0, 15))) } { arrivalTime } </p>
+            <p><span className="job-card-title">Job Assigned To: </span> { jobAssignedTo }</p>
+            <p><span className="job-card-title">Client Name: </span> { firstName } { lastName }</p>
+            <p><span className="job-card-title">Client Contact: </span> { phone } | { email }</p>
+            <p><span className="job-card-title">House Summary: </span> { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
+            <p><span className="job-card-title">Location: </span> { address1 }, { address2 } { city }, { state }{ zipCode }</p>
+            <p><span className="job-card-title">Special Requests: </span> { notes }</p>
+            <Button className="check-btn in" small>Check-in</Button>
+            <Button className="check-btn out" small>Check-out</Button>
         </Col>
     )
 }
