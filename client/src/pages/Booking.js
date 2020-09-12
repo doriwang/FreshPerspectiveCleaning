@@ -4,8 +4,6 @@ import axios from "axios"
 import M from "materialize-css"
 import { calculatePrice } from "../utils/calculatePrice"
 import { findBlockDates } from "../utils/findBlockDates"
-import Axios from "axios";
-
 class Booking extends Component {
     constructor(props) {
         super(props)
@@ -55,7 +53,7 @@ class Booking extends Component {
         });
 
 
-        Axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
+        axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
             .then(res => {
                 if (res.data.length === 0) {
                     this.setState({
@@ -115,8 +113,8 @@ class Booking extends Component {
             estimate: calculatePrice(this.state.bathNum, value)
         })
     }
-    handleFormSubmit = (event) => {
-        // event.preventDefault()
+    handleFormSubmit = async (event) => {
+        event.preventDefault()
         // collecting form data
         const { selectedDate,
             bedNum,
@@ -153,8 +151,13 @@ class Booking extends Component {
             estimate,
             date
         }
-        axios.post("/api/booknow", formData)
-            .then(res => {
+		try {
+			const res = await axios.post("/api/booknow", formData)
+			const { success } = res.data;
+			
+			if (success) {
+
+				M.toast({ html: "Booking Successful!", displayLength: 6000, classes: "green" })
                 this.setState({
                     selectedDate: "",
                     bedNum: "",
@@ -173,8 +176,15 @@ class Booking extends Component {
                     notes: "",
                     estimate: 0.00.toFixed(2),
                     date: new Date()
-                })
-            }).catch(err => console.log(err))
+				});
+			} else {
+				 M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
+			}
+		} catch(err) {
+			console.log(err)
+			M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })		
+		}
+		
     }
 
     componentDidMount() {

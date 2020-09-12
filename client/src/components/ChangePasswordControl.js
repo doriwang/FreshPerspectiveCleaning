@@ -1,8 +1,7 @@
 import React from "react"
 import axios from "axios"
 import M from "materialize-css";
-import Config from "../Config"
-const BACKEND_HOST = Config.BACKEND_HOST
+
 
 class ChangePasswordControl extends React.Component {
 	state = {
@@ -21,7 +20,7 @@ class ChangePasswordControl extends React.Component {
 		event.preventDefault();
 
 		const { oldPassword, newPassword, confirmPassword } = this.state
-		const result = await axios.post(BACKEND_HOST + "/login/changePassword", {
+		const result = await axios.post("/login/changePassword", {
 			oldPassword,
 			newPassword,
 			confirmPassword,

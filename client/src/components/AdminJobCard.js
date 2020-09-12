@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { Col, Button, Icon, TextInput, Textarea } from "react-materialize"
+import M from "materialize-css"
 
 export const AdminJobCard = ({ job }) => {
+
+    const[gone, setGone] = useState(false);
 
     const [formDisplay, setFormDisplay] = useState(false)
 
@@ -64,8 +67,8 @@ export const AdminJobCard = ({ job }) => {
         setFormDisplay(true)
     }
 
-    const updateJob = () => {
-        // e.preventDefault()
+    const updateJob = async (e) => {
+        e.preventDefault()
         const date1 = new Date(selectedDate)
         const data = {
             selectedDate: selectedDate,
@@ -92,41 +95,56 @@ export const AdminJobCard = ({ job }) => {
             checkout: checkedOut
         }
 
-        axios.put(`/api/updatejob/${_id}`, data)
-            .then(res => console.log(res))
+        console.log(data)
+        try {
+            const res = await axios.put(`/api/updatejob/${_id}`, data)
+            M.toast({ html: "Update Succeeded!", classes: "green"})
+        } catch (err) {
+            M.toast({ html: "Update Failed...", classes: "red"})
+            console.log(err)
+        } finally {
+            setFormDisplay(false);
+        }
+            
     }
 
-    const deleteJob = () => {
-        axios.delete(`/api/deletejob/${_id}`)
-            .then(res => console.log(res))
-            .then(window.location.reload())
+    const deleteJob = async () => {
+        try {
+            const res = await axios.delete(`/api/deletejob/${_id}`)
+            M.toast({ html: "Delete Succeeded!", classes: "green"})
+            setGone(true);
+        } catch (err) {
+            M.toast({ html: "Delete Failed...", classes: "red"})
+            console.log(err)
+        }
     }
 
-    return (
+    return gone ? <div style ={{display: "none"}}> </div> : (
         <div>
             <Col style={ formDisplay ? { display: "none" } : { display: "block" } } className="card" l={ 6 } s={ 12 }>
                 <div className="job-button-div">
                     <h5 className="job-card">Job Details
                     <Button
-                            floating
-                            icon={ <Icon>mode_edit</Icon> }
-                            medium="true"
-                            node="button"
-                            waves="light"
-                            onClick={ displayForm }
-                            id="float-left"
-                            className="in"
-                        />
-                        <Button
-                            floating
-                            icon={ <Icon>delete_forever</Icon> }
-                            medium="true"
-                            node="button"
-                            waves="light"
-                            id="float-right"
-                            onClick={ deleteJob }
-                            className="out"
-                        />
+                        id ="float-left"
+                        className="in"
+                        floating
+                        icon={ <Icon>mode_edit</Icon> }
+                        medium="true"
+                        node="button"
+                        waves="light"
+                        onClick={ displayForm }
+                    />
+                    <Button
+                        id ="float-right"
+                        className="out"
+                        floating
+                        icon={ <Icon>delete_forever</Icon> }
+                        medium="true"
+                        node="button"
+                        waves="light"
+                        onClick={ deleteJob }
+                    />
+
                     </h5>
                 </div>
                 <div>
@@ -143,6 +161,7 @@ export const AdminJobCard = ({ job }) => {
                     </p>
                     <p><span className="job-card-title">Checked Out: </span>  { checkedOut }
                         <span className="job-card-title"> TimeOut: </span>{ timeOut }</p>
+
                 </div>
             </Col>
 
