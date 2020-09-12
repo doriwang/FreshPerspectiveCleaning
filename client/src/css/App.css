@@ -7,6 +7,16 @@
 .btn {
   background-color: gold ! important;
 }
+
+#HomeCarousel img {
+  height: 76%;
+  margin-top: 1px;
+}
+#HomeCarousel {
+  min-height: 100vh;
+  height: 100%
+}
+
 /* booking page */
 .bookingForm h5{
   color: 	#006400;
@@ -48,8 +58,6 @@
 }
 
 /* Checklist page */
-.checklist {
-}
 .cardLists ul li {
   margin-left: 15px;
   display: list-item !important;
@@ -57,7 +65,7 @@
 }
 
 .cardLists ul {
-  margin-top: 0px;
+  margin-top: 20px;
   margin-bottom: 0px
 }
 
@@ -131,4 +139,8 @@
 
 .job-button-div {
   margin-bottom: 30px;
+}
+
+.newUserHeader {
+  padding-bottom: 20px
 }
