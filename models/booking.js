@@ -24,13 +24,12 @@ const bookingSchema = new Schema({
     checkedIn: { type: Boolean, default: false },
     checkedOut: { type: Boolean, default: false },
     checkInInfo: {
-        default: "",
-        location: { type: String },
-        time: { type: String }
+        location: { type: String, default: "" },
+        time: { type: String, default: "" }
     },
     checkOutInfo: {
-        location: { type: String },
-        time: { type: String }
+        location: { type: String, default: "" },
+        time: { type: String, default: "" }
     }
 })
 
