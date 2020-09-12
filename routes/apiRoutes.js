@@ -31,7 +31,6 @@ router.get("/selected/:selectedDate", (req, res) => {
         .catch(err => res.json(err));
 })
 
-
 router.put("/updatejob/:id", (req, res) => {
     db.Booking.findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(data => res.json(data))
@@ -44,14 +43,8 @@ router.delete("/deletejob/:id", (req, res) => {
         .catch(err => res.status(500).json(err));
 })
 
-router.post("/joblogs", (req, res) => {
-    db.JobLogs.create(req.body)
-        .then(data => res.json(data))
-        .catch(err => res.status(500).json(err));
-})
-
 router.put("/joblogs/:id", (req, res) => {
-    db.JobLogs.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.Booking.findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })

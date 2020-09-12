@@ -23,7 +23,14 @@ const EmployeeJobCard = ({ job }) => {
         state,
         zipCode,
         notes,
-        jobAssignedTo } = job
+        jobAssignedTo,
+        checkedIn,
+        checkedOut,
+        _id,
+        checkInInfo,
+    } = job
+
+    let time = checkInInfo.time
 
     useEffect(() => {
         if ("geolocation" in navigator) {
@@ -43,11 +50,6 @@ const EmployeeJobCard = ({ job }) => {
 
     const checkIn = () => {
         const checkInData = {
-            jobDateAndTime: selectedDate + " " + arrivalTime,
-            employee: jobAssignedTo,
-            clientName: firstName + " " + lastName,
-            jobLocation: address1 + " " + address2 + " " + city + " " + state + " " + zipCode,
-            clientNotes: notes,
             checkInInfo: {
                 location: userPosition.coords.latitude + " " + userPosition.coords.longitude,
                 time: new Intl.DateTimeFormat("en-US", {
@@ -57,11 +59,31 @@ const EmployeeJobCard = ({ job }) => {
                     hour: "numeric",
                     minute: "numeric"
                 }).format(userPosition.timestamp)
-            }
-            // checkOutInfo:
+            },
+            checkedIn: true
         }
-        axios.post("/api/joblogs", checkInData)
+        axios.put(`/api/joblogs/${_id}`, checkInData)
             .then(res => console.log(res))
+            .then(window.location.reload())
+    }
+
+    const checkOut = () => {
+        const checkOutData = {
+            checkOutInfo: {
+                location: userPosition.coords.latitude + " " + userPosition.coords.longitude,
+                time: new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                    hour: "numeric",
+                    minute: "numeric"
+                }).format(userPosition.timestamp)
+            },
+            checkedOut: true
+        }
+        axios.put(`/api/joblogs/${_id}`, checkOutData)
+            .then(res => console.log(res))
+            .then(window.location.reload())
     }
 
     return (
@@ -74,8 +96,10 @@ const EmployeeJobCard = ({ job }) => {
             <p><span className="job-card-title">House Summary: </span> { bedNum }beds | { bathNum }bath | { footageNum }ft² | Clean { frequency }</p>
             <p><span className="job-card-title">Location: </span> { address1 }, { address2 } { city }, { state }{ zipCode }</p>
             <p><span className="job-card-title">Special Requests: </span> { notes }</p>
+            <p><span className="job-card-title">Checked In: </span>  { checkedIn.toString() }</p>
+            <p><span className="job-card-title">Checked Out: </span>  { checkedOut.toString() }</p>
             <Button className="check-btn in" small onClick={ checkIn }>Check-in</Button>
-            <Button className="check-btn out" small>Check-out</Button>
+            <Button className="check-btn out" small onClick={ checkOut }>Check-out</Button>
         </Col>
     )
 }

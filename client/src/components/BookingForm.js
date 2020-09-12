@@ -133,8 +133,6 @@ class BookingForm extends React.Component {
                         </select>
                         <label>Arrival Time</label>
                     </Col>
-
-
                     <h5>3. ENTER YOUR CONTACT INFO</h5>
                     <Col className="validate input-field" l={ 6 } s={ 12 }>
                         <input name="firstName" type="text"
