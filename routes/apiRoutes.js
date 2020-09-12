@@ -3,8 +3,11 @@ const db = require("../models");
 
 router.post("/booknow", (req, res) => {
     db.Booking.create(req.body)
-        .then(data => res.json(data))
-        .catch(err => res.status(500).json(err));
+        .then(data => res.json({ success: true, data }))
+        .catch(err => { 
+			console.log(err);
+			res.status(500).json({ success: false, err })
+		});
 })
 
 router.get("/getjobs", (req, res) => {
@@ -23,14 +26,13 @@ router.get("/getjob/:jobAssignedTo", (req, res) => {
 
 router.get("/selected/:selectedDate", (req, res) => {
     console.log(req.params)
-    db.Booking.find({ selectedDate: req.params.selectedDate})
+    db.Booking.find({ selectedDate: req.params.selectedDate })
         .then(data => {
-            
+
             res.json(data)
         })
         .catch(err => res.json(err));
 })
-
 
 router.put("/updatejob/:id", (req, res) => {
     db.Booking.findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -40,6 +42,12 @@ router.put("/updatejob/:id", (req, res) => {
 
 router.delete("/deletejob/:id", (req, res) => {
     db.Booking.findOneAndDelete({ _id: req.params.id })
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json(err));
+})
+
+router.put("/joblogs/:id", (req, res) => {
+    db.Booking.findOneAndUpdate({ _id: req.params.id }, req.body)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 })

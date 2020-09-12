@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import Config from "../Config"
 import M from "materialize-css";
-const BACKEND_HOST = Config.BACKEND_HOST;
 
 function NewUserForm() {
 	const [state, setState] = useState({
@@ -29,7 +27,7 @@ function NewUserForm() {
 			return;
 		}
 
-		const result = await axios.post(BACKEND_HOST + "/login/newUser", {
+		const result = await axios.post("/login/newUser", {
 			username, firstName, lastName, password, role, token: localStorage.userLogin
 		});
 

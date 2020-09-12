@@ -20,7 +20,18 @@ const bookingSchema = new Schema({
     zipCode: { type: String, required: true },
     notes: { type: String, default: "", },
     estimate: { type: Number },
-    jobAssignedTo: { type: String, default: "", }
+    jobAssignedTo: { type: String, default: "", },
+    checkedIn: { type: Boolean, default: false },
+    checkedOut: { type: Boolean, default: false },
+    checkInInfo: {
+        default: "",
+        location: { type: String },
+        time: { type: String }
+    },
+    checkOutInfo: {
+        location: { type: String },
+        time: { type: String }
+    }
 })
 
 // Simon

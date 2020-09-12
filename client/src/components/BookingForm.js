@@ -5,21 +5,16 @@ import { Col, Icon } from "react-materialize"
 // datepicker localization
 import { registerLocale } from "react-datepicker"
 import us from "date-fns/locale/en-US"
-
 registerLocale("us", us);
 
 
 class BookingForm extends React.Component {
-
-    
 
     state = {
         morning: 0,
         afternoon: 0,
         render: 0
     }
-
-    
 
     componentDidUpdate(prevProps) {
         const propsChanged = this.props.morningDisabled !== prevProps.morningDisabled || this.props.afternoonDisabled !== prevProps.afternoonDisabled;
@@ -38,14 +33,11 @@ class BookingForm extends React.Component {
         this.props.handleFormInputChange(event)
     }
 
-    
-
-
     render() {
         const morningOnly = !this.props.morningDisabled && this.props.afternoonDisabled
-        const afternoonOnly= this.props.morningDisabled && !this.props.afternoonDisabled
+        const afternoonOnly = this.props.morningDisabled && !this.props.afternoonDisabled
         const fullDay = !this.props.morningDisabled && !this.props.afternoonDisabled
-        
+
         return (
             <form onSubmit={ this.props.handleFormSubmit } className="bookingForm row">
                 <Col className="card" l={ 8 } s={ 12 }>
@@ -101,8 +93,8 @@ class BookingForm extends React.Component {
                         <input placeholder=" " name="date" type="text"
                             value={ this.props.selectedDate }
                             onClick={ this.props.handleDateInputClick }
-                            // onChange={ this.handleDateInputChange }
-                            // onChange={ console.log(this.props.selectedDate) }
+                        // onChange={ this.handleDateInputChange }
+                        // onChange={ console.log(this.props.selectedDate) }
 
                         />
                         <label>Date</label>
@@ -119,30 +111,28 @@ class BookingForm extends React.Component {
                             inline
                         />
                     </div>
-                    <Col className="validate input-field" l={ 6 } s={ 12 } style={morningOnly ? {display: "block"} : {display: "none"}}>
-                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={this.handleArrivalTimeClick  } >
+                    <Col className="validate input-field" l={ 6 } s={ 12 } style={ morningOnly ? { display: "block" } : { display: "none" } }>
+                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={ this.handleArrivalTimeClick } >
                             <option disabled value="" >Choose your option</option>
                             <option>Morning Arrival between 8AM - 9AM</option>
                         </select>
                         <label>Arrival Time</label>
                     </Col>
-                    <Col className="validate input-field" l={ 6 } s={ 12 } style={afternoonOnly ? {display: "block"} : {display: "none"}}>
-                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={this.handleArrivalTimeClick  } >
+                    <Col className="validate input-field" l={ 6 } s={ 12 } style={ afternoonOnly ? { display: "block" } : { display: "none" } }>
+                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={ this.handleArrivalTimeClick } >
                             <option disabled value="" >Choose your option</option>
                             <option>Afternoon Arrival between 12PM - 1PM</option>
                         </select>
                         <label>Arrival Time</label>
                     </Col>
-                    <Col className="validate input-field" l={ 6 } s={ 12 } style={fullDay ? {display: "block"} : {display: "none"}}>
-                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={this.handleArrivalTimeClick  } >
+                    <Col className="validate input-field" l={ 6 } s={ 12 } style={ fullDay ? { display: "block" } : { display: "none" } }>
+                        <select value={ this.props.arrivalTime } name="arrivalTime" onChange={ this.handleArrivalTimeClick } >
                             <option disabled value="" >Choose your option</option>
                             <option>Morning Arrival between 8AM - 9AM</option>
                             <option>Afternoon Arrival between 12PM - 1PM</option>
                         </select>
                         <label>Arrival Time</label>
                     </Col>
-
-
                     <h5>3. ENTER YOUR CONTACT INFO</h5>
                     <Col className="validate input-field" l={ 6 } s={ 12 }>
                         <input name="firstName" type="text"

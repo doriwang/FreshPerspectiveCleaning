@@ -120,3 +120,15 @@
   background-color: red;
   float: right
 }
+
+#float-left {
+  float: left
+}
+
+#float-right {
+  float: right
+}
+
+.job-button-div {
+  margin-bottom: 30px;
+}

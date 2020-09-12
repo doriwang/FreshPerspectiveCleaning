@@ -4,8 +4,6 @@ import axios from "axios"
 import M from "materialize-css"
 import { calculatePrice } from "../utils/calculatePrice"
 import { findBlockDates } from "../utils/findBlockDates"
-import Axios from "axios";
-
 class Booking extends Component {
     constructor(props) {
         super(props)
@@ -54,27 +52,27 @@ class Booking extends Component {
             showCalendar: false,
         });
 
-        
-        Axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
-        .then(res => {
-            if (res.data.length === 0) {
-                this.setState({
+
+        axios.get(`/api/selected/${date.toString().slice(0, 15)}`)
+            .then(res => {
+                if (res.data.length === 0) {
+                    this.setState({
                         afternoonDisabled: false,
                         morningDisabled: false
-                })
-            } else if (res.data[0].arrivalTime === "Morning Arrival between 8AM - 9AM") {
-                this.setState({
-                    morningDisabled: true,
-                    afternoonDisabled: false
-                })
-            } else if (res.data[0].arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
-                this.setState({
-                    afternoonDisabled: true,
-                    morningDisabled: false
-                })
-            } 
-        })
-        .catch(err => console.log(err))
+                    })
+                } else if (res.data[0].arrivalTime === "Morning Arrival between 8AM - 9AM") {
+                    this.setState({
+                        morningDisabled: true,
+                        afternoonDisabled: false
+                    })
+                } else if (res.data[0].arrivalTime === "Afternoon Arrival between 12PM - 1PM") {
+                    this.setState({
+                        afternoonDisabled: true,
+                        morningDisabled: false
+                    })
+                }
+            })
+            .catch(err => console.log(err))
 
     };
     isWeekday = date => {
@@ -115,8 +113,8 @@ class Booking extends Component {
             estimate: calculatePrice(this.state.bathNum, value)
         })
     }
-    handleFormSubmit = (event) => {
-        // event.preventDefault()
+    handleFormSubmit = async (event) => {
+        event.preventDefault()
         // collecting form data
         const { selectedDate,
             bedNum,
@@ -133,6 +131,7 @@ class Booking extends Component {
             city,
             zipCode,
             notes, estimate, date } = this.state
+
         const formData = {
             selectedDate,
             bedNum,
@@ -152,8 +151,13 @@ class Booking extends Component {
             estimate,
             date
         }
-        axios.post("/api/booknow", formData)
-            .then(res => {
+		try {
+			const res = await axios.post("/api/booknow", formData)
+			const { success } = res.data;
+			
+			if (success) {
+
+				M.toast({ html: "Booking Successful!", displayLength: 6000, classes: "green" })
                 this.setState({
                     selectedDate: "",
                     bedNum: "",
@@ -172,8 +176,15 @@ class Booking extends Component {
                     notes: "",
                     estimate: 0.00.toFixed(2),
                     date: new Date()
-                })
-            }).catch(err => console.log(err))
+				});
+			} else {
+				 M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
+			}
+		} catch(err) {
+			console.log(err)
+			M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })		
+		}
+		
     }
 
     componentDidMount() {
@@ -214,8 +225,8 @@ class Booking extends Component {
                     frequencyChange={ this.frequencyChange }
                     preEstimateStyle={ this.state.showPreEstimate ? { display: "block" } : { display: "none" } }
                     estimateStyle={ this.state.showEstimate ? { display: "block" } : { display: "none" } }
-                    morningDisabled={this.state.morningDisabled}
-                    afternoonDisabled={this.state.afternoonDisabled}
+                    morningDisabled={ this.state.morningDisabled }
+                    afternoonDisabled={ this.state.afternoonDisabled }
                 />
             </div>
         )
