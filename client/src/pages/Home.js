@@ -11,8 +11,6 @@ import img5 from "../images/5.jpg"
 import img6 from "../images/6.jpg"
 import img7 from "../images/7.jpg"
 import img8 from "../images/8.jpg"
-import img9 from "../images/9.jpg"
-import img10 from "../images/10.jpg"
 
 const images = [
     img1,
@@ -23,15 +21,13 @@ const images = [
     img6,
     img7,
     img8,
-    img9,
-    img10,
 ]
 
 class Home extends React.Component {
 
     componentDidMount() {
         let root = $("#HomeCarousel");
-        root.attr("style", `height: ${window.screen.availWidth * 2 / 3}px`)
+        // root.attr("style", `height: ${window.screen.availHeight}px`)
 
         this.interval = window.setInterval(() => {
             M.Carousel.getInstance(root).next();
@@ -44,15 +40,17 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="">
+            <div className="HomeCarousel ">
                 <Carousel
                     carouselId="HomeCarousel"
+                    className="container"
                     images={ images }
                     options={ {
                         fullWidth: true,
                     } }>
                 </Carousel>
             </div>
+
         )
     }
 }

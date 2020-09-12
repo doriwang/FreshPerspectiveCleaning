@@ -39,6 +39,7 @@ class Booking extends Component {
             afternoonDisabled: false,
         }
     }
+
     // simon start calendar method
     handleDateInputClick = () => {
         this.setState({ showCalendar: true })
@@ -82,9 +83,9 @@ class Booking extends Component {
     getJobs = () => {
         axios.get("/api/getjobs")
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 const blockDates = findBlockDates(res.data)
-                console.log("block", blockDates);
+                // console.log("block", blockDates);
                 this.setState({
                     blockedDate: blockDates,
                 })
@@ -115,6 +116,7 @@ class Booking extends Component {
     }
     handleFormSubmit = async (event) => {
         event.preventDefault()
+        this.setState({ showPreEstimate: true, showEstimate: false, bedNum: "" })
         // collecting form data
         const { selectedDate,
             bedNum,
@@ -151,13 +153,12 @@ class Booking extends Component {
             estimate,
             date
         }
-		try {
-			const res = await axios.post("/api/booknow", formData)
-			const { success } = res.data;
-			
-			if (success) {
+        try {
+            const res = await axios.post("/api/booknow", formData)
+            const { success } = res.data;
 
-				M.toast({ html: "Booking Successful!", displayLength: 6000, classes: "green" })
+            if (success) {
+                M.toast({ html: "Booking Successful!", displayLength: 6000, classes: "green" })
                 this.setState({
                     selectedDate: "",
                     bedNum: "",
@@ -176,15 +177,14 @@ class Booking extends Component {
                     notes: "",
                     estimate: 0.00.toFixed(2),
                     date: new Date()
-				});
-			} else {
-				 M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
-			}
-		} catch(err) {
-			console.log(err)
-			M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })		
-		}
-		
+                });
+            } else {
+                M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
+            }
+        } catch (err) {
+            console.log(err)
+            M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
+        }
     }
 
     componentDidMount() {
@@ -192,6 +192,7 @@ class Booking extends Component {
         this.getJobs();
     }
     render() {
+        console.log(this.state.bedNum)
         return (
             <div className="container app-content">
                 <BookingForm

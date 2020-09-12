@@ -34,6 +34,8 @@ function App() {
         <Route exact path="/login" component={ EmployeePortal } />
         <Route exact path="/employee" component={ EmployeeControls } />
         <Route exact path="/admin" component={ AdminControls } />
+        <Route exact path="/createNewUser" component={ AdminControls } />
+        <Route exact path="/changePassword" component={ AdminControls } />
         <Route path="*" component={ NotFound } />
       </Switch>
       <Footer />

@@ -45,7 +45,7 @@ class BookingForm extends React.Component {
                     <Col className="validate input-field" l={ 6 } s={ 12 }>
                         <select name="bedNum" value={ this.props.bedNum }
                             onChange={ this.props.handleFormInputChange } >
-                            <option disabled default value="">Choose your option</option>
+                            <option disabled value="">Choose your option</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -93,9 +93,6 @@ class BookingForm extends React.Component {
                         <input placeholder=" " name="date" type="text"
                             value={ this.props.selectedDate }
                             onClick={ this.props.handleDateInputClick }
-                        // onChange={ this.handleDateInputChange }
-                        // onChange={ console.log(this.props.selectedDate) }
-
                         />
                         <label>Date</label>
                     </Col>
@@ -199,7 +196,7 @@ class BookingForm extends React.Component {
                     <h5 id="estimate">ESTIMATE</h5>
                     <div className="container" style={ this.props.estimateStyle }>
                         <h6><Icon small>home </Icon>{ this.props.bedNum } beds / { this.props.bathNum } baths / { this.props.footageNum } ft² </h6>
-                        <h6><Icon small>event </Icon>Clean { this.props.frequency }</h6>
+                        <h6><Icon className="estimate-icon" small>event </Icon>Clean { this.props.frequency }</h6>
                     </div>
                     <div className="container" style={ this.props.preEstimateStyle }>
                         <h6>Your estimate will display below after you enter your property info.</h6>
