@@ -5,7 +5,7 @@ import M from "materialize-css"
 
 export const AdminJobCard = ({ job }) => {
 
-    const[gone, setGone] = useState(false);
+    const [gone, setGone] = useState(false);
 
     const [formDisplay, setFormDisplay] = useState(false)
 
@@ -95,55 +95,54 @@ export const AdminJobCard = ({ job }) => {
             checkout: checkedOut
         }
 
-        console.log(data)
         try {
-            const res = await axios.put(`/api/updatejob/${_id}`, data)
-            M.toast({ html: "Update Succeeded!", classes: "green"})
+            await axios.put(`/api/updatejob/${_id}`, data)
+            M.toast({ html: "Update Succeeded!", classes: "green" })
         } catch (err) {
-            M.toast({ html: "Update Failed...", classes: "red"})
+            M.toast({ html: "Update Failed...", classes: "red" })
             console.log(err)
         } finally {
             setFormDisplay(false);
         }
-            
+
     }
 
     const deleteJob = async () => {
         try {
-            const res = await axios.delete(`/api/deletejob/${_id}`)
-            M.toast({ html: "Delete Succeeded!", classes: "green"})
+            await axios.delete(`/api/deletejob/${_id}`)
+            M.toast({ html: "Delete Succeeded!", classes: "green" })
             setGone(true);
         } catch (err) {
-            M.toast({ html: "Delete Failed...", classes: "red"})
+            M.toast({ html: "Delete Failed...", classes: "red" })
             console.log(err)
         }
     }
 
-    return gone ? <div style ={{display: "none"}}> </div> : (
+    return gone ? <div style={ { display: "none" } }> </div> : (
         <div>
             <Col style={ formDisplay ? { display: "none" } : { display: "block" } } className="card" l={ 6 } s={ 12 }>
                 <div className="job-button-div">
                     <h5 className="job-card">Job Details
                     <Button
-                        id ="float-left"
-                        className="in"
-                        floating
-                        icon={ <Icon>mode_edit</Icon> }
-                        medium="true"
-                        node="button"
-                        waves="light"
-                        onClick={ displayForm }
-                    />
-                    <Button
-                        id ="float-right"
-                        className="out"
-                        floating
-                        icon={ <Icon>delete_forever</Icon> }
-                        medium="true"
-                        node="button"
-                        waves="light"
-                        onClick={ deleteJob }
-                    />
+                            id="float-left"
+                            className="in"
+                            floating
+                            icon={ <Icon>mode_edit</Icon> }
+                            medium="true"
+                            node="button"
+                            waves="light"
+                            onClick={ displayForm }
+                        />
+                        <Button
+                            id="float-right"
+                            className="out"
+                            floating
+                            icon={ <Icon>delete_forever</Icon> }
+                            medium="true"
+                            node="button"
+                            waves="light"
+                            onClick={ deleteJob }
+                        />
 
                     </h5>
                 </div>
