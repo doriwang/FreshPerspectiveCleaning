@@ -116,7 +116,6 @@ class Booking extends Component {
     }
     handleFormSubmit = async (event) => {
         event.preventDefault()
-        this.setState({ showPreEstimate: true, showEstimate: false, bedNum: "" })
         // collecting form data
         const { selectedDate,
             bedNum,
@@ -176,7 +175,10 @@ class Booking extends Component {
                     zipCode: "",
                     notes: "",
                     estimate: 0.00.toFixed(2),
-                    date: new Date()
+                    date: new Date(),
+                    showPreEstimate: true,
+                    showEstimate: false,
+                    bedNum: ""
                 });
             } else {
                 M.toast({ html: "Booking Unsuccessful, information may have been missing. :(", displayLength: 6000, classes: "red" })
